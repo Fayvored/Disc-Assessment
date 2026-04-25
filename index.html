@@ -4,8 +4,13 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Crosstie Solutions — DISC Assessment</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
+<!-- ✦ FONT CHANGE: Montserrat (headers) + Open Sans (body) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+<!-- PDF: html2pdf (wraps html2canvas + jsPDF) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <style>
 /* ══════════════════════════════════════════════
    ROOT TOKENS
@@ -33,11 +38,11 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Syne', sans-serif;
+  /* ✦ Open Sans for all body text */
+  font-family: 'Open Sans', sans-serif;
   background: var(--paper);
   color: var(--ink);
   min-height: 100vh;
@@ -57,33 +62,26 @@ body {
 }
 .logo-mark {
   width: 36px; height: 36px;
-  background: var(--green);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+  background: var(--green); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .logo-mark svg { width: 20px; height: 20px; fill: #fff; }
 .logo-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.2rem; font-weight: 700;
-  letter-spacing: -0.3px;
-  color: var(--ink);
+  /* ✦ Montserrat for logo */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem; font-weight: 800; letter-spacing: -0.3px; color: var(--ink);
 }
 .logo-name span { color: var(--green); }
 .header-badge {
-  margin-left: auto;
-  font-size: 0.7rem; font-weight: 700;
-  letter-spacing: 2.5px; text-transform: uppercase;
-  color: var(--dim);
-  background: var(--cream);
-  padding: 5px 12px; border-radius: 999px;
+  margin-left: auto; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--dim);
+  background: var(--cream); padding: 5px 12px; border-radius: 999px;
 }
 
 /* PROGRESS */
 .progress-track { height: 3px; background: var(--cream); }
 .progress-fill {
-  height: 3px;
-  background: linear-gradient(90deg, var(--green), var(--amber));
+  height: 3px; background: linear-gradient(90deg, var(--green), var(--amber));
   width: 0%; transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 
@@ -91,12 +89,8 @@ body {
    LAYOUT
 ══════════════════════════════════════════════ */
 main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
-
 .section { display: none; }
-.section.active {
-  display: block;
-  animation: rise 0.45s cubic-bezier(0.4,0,0.2,1);
-}
+.section.active { display: block; animation: rise 0.45s cubic-bezier(0.4,0,0.2,1); }
 @keyframes rise {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -106,13 +100,9 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
    WELCOME HERO
 ══════════════════════════════════════════════ */
 .hero {
-  background: var(--navy);
-  border-radius: 24px;
-  padding: 60px 52px 52px;
-  color: #fff;
-  margin-bottom: 36px;
-  position: relative;
-  overflow: hidden;
+  background: var(--navy); border-radius: 24px;
+  padding: 60px 52px 52px; color: #fff; margin-bottom: 36px;
+  position: relative; overflow: hidden;
 }
 .hero-grid-bg {
   position: absolute; inset: 0;
@@ -134,59 +124,45 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
   pointer-events: none;
 }
 .hero-eyebrow {
-  font-size: 0.72rem; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--green2); margin-bottom: 18px;
-  position: relative; z-index: 1;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--green2); margin-bottom: 18px; position: relative; z-index: 1;
   display: flex; align-items: center; gap: 8px;
 }
-.hero-eyebrow::before {
-  content: ''; display: block;
-  width: 24px; height: 2px; background: var(--green2);
-}
+.hero-eyebrow::before { content: ''; display: block; width: 24px; height: 2px; background: var(--green2); }
 .hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
-  line-height: 1.1;
-  margin-bottom: 20px;
-  position: relative; z-index: 1;
+  /* ✦ Montserrat for all headings */
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 900;
+  line-height: 1.1; margin-bottom: 20px; position: relative; z-index: 1;
 }
-.hero h1 em { font-style: italic; color: var(--amber); }
+.hero h1 em { font-style: italic; color: var(--amber); font-weight: 700; }
 .hero-desc {
   font-size: 1rem; color: rgba(255,255,255,0.65);
   line-height: 1.75; max-width: 460px;
   position: relative; z-index: 1; margin-bottom: 36px;
 }
-.disc-tags {
-  display: flex; gap: 8px; flex-wrap: wrap;
-  position: relative; z-index: 1;
-}
+.disc-tags { display: flex; gap: 8px; flex-wrap: wrap; position: relative; z-index: 1; }
 .disc-tag {
   padding: 5px 14px; border-radius: 999px;
-  font-size: 0.75rem; font-weight: 800;
-  letter-spacing: 1.5px; text-transform: uppercase;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
 }
 .tag-D { background: rgba(192,57,43,0.18); color: #ff7b7b; border: 1px solid rgba(192,57,43,0.35); }
 .tag-I { background: rgba(212,130,10,0.18); color: #ffc36b; border: 1px solid rgba(212,130,10,0.35); }
-.tag-S { background: rgba(26,140,78,0.18); color: #6beba0; border: 1px solid rgba(26,140,78,0.35); }
+.tag-S { background: rgba(26,140,78,0.18);  color: #6beba0; border: 1px solid rgba(26,140,78,0.35); }
 .tag-C { background: rgba(21,101,160,0.18); color: #7ec8f0; border: 1px solid rgba(21,101,160,0.35); }
 
 /* NOTICE CARDS */
 .notice-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px,1fr));
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr));
   gap: 14px; margin-bottom: 36px;
 }
 .notice-card {
-  background: var(--white);
-  border-radius: var(--r);
-  padding: 20px 18px;
-  border-top: 3px solid var(--green);
-  box-shadow: var(--sh);
+  background: var(--white); border-radius: var(--r);
+  padding: 20px 18px; border-top: 3px solid var(--green); box-shadow: var(--sh);
 }
 .notice-card h4 {
-  font-size: 0.75rem; font-weight: 800;
-  letter-spacing: 1.5px; text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
   color: var(--green); margin-bottom: 7px;
 }
 .notice-card p { font-size: 0.82rem; color: var(--slate); line-height: 1.65; }
@@ -195,50 +171,35 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
    FORM
 ══════════════════════════════════════════════ */
 .form-card {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: var(--sh2);
-  margin-bottom: 28px;
-  border: 1px solid var(--border);
+  background: var(--white); border-radius: 20px;
+  padding: 40px; box-shadow: var(--sh2); margin-bottom: 28px; border: 1px solid var(--border);
 }
 .card-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem; font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem; font-weight: 800;
   margin-bottom: 28px; color: var(--ink);
   display: flex; align-items: center; gap: 12px;
 }
 .step-dot {
-  width: 34px; height: 34px;
-  background: var(--ink); color: #fff;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.82rem; font-weight: 800;
-  flex-shrink: 0;
+  width: 34px; height: 34px; background: var(--ink); color: #fff;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.82rem; font-weight: 800; flex-shrink: 0;
 }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 @media(max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
 .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 22px; }
 .field label {
-  font-size: 0.78rem; font-weight: 700;
-  letter-spacing: 0.8px; text-transform: uppercase;
-  color: var(--slate);
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--slate);
 }
 .field label .req { color: var(--D); margin-left: 3px; }
 .field input, .field select {
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  padding: 13px 16px;
-  font-family: 'Syne', sans-serif;
-  font-size: 0.95rem; color: var(--ink);
-  background: var(--paper);
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-  outline: none; width: 100%;
+  border: 1.5px solid var(--border); border-radius: 10px; padding: 13px 16px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem; color: var(--ink); background: var(--paper);
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; outline: none; width: 100%;
 }
 .field input:focus, .field select:focus {
-  border-color: var(--green);
-  box-shadow: 0 0 0 4px rgba(26,140,78,0.1);
-  background: var(--white);
+  border-color: var(--green); box-shadow: 0 0 0 4px rgba(26,140,78,0.1); background: var(--white);
 }
 .field input.error { border-color: var(--D); box-shadow: 0 0 0 4px rgba(192,57,43,0.08); }
 .err-msg { font-size: 0.74rem; color: var(--D); display: none; font-weight: 600; }
@@ -249,16 +210,11 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 .gender-opt input[type="radio"] { display: none; }
 .gender-opt label {
   display: flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 12px; border: 1.5px solid var(--border);
-  border-radius: 10px; cursor: pointer;
-  font-size: 0.88rem; font-weight: 600;
+  padding: 12px; border: 1.5px solid var(--border); border-radius: 10px;
+  cursor: pointer; font-size: 0.88rem; font-weight: 600;
   background: var(--paper); transition: all 0.18s;
 }
-.gender-opt input:checked + label {
-  border-color: var(--green);
-  background: rgba(26,140,78,0.07);
-  color: var(--green);
-}
+.gender-opt input:checked + label { border-color: var(--green); background: rgba(26,140,78,0.07); color: var(--green); }
 .gender-opt label:hover { border-color: var(--green); background: rgba(26,140,78,0.04); }
 
 /* ══════════════════════════════════════════════
@@ -266,48 +222,34 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 ══════════════════════════════════════════════ */
 .q-header { text-align: center; margin-bottom: 36px; }
 .q-header-eyebrow {
-  font-size: 0.7rem; font-weight: 800;
-  letter-spacing: 3px; text-transform: uppercase;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
   color: var(--green); margin-bottom: 10px;
 }
 .q-header h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem; line-height: 1.2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem; font-weight: 800; line-height: 1.2;
 }
 .q-header p { color: var(--dim); margin-top: 8px; font-size: 0.92rem; }
 
 .sticky-counter {
   position: sticky; top: 67px; z-index: 50;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 8px 20px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 999px; padding: 8px 20px;
   display: inline-flex; align-items: center; gap: 8px;
-  font-size: 0.82rem; font-weight: 700;
-  margin-bottom: 28px;
-  box-shadow: var(--sh);
+  font-size: 0.82rem; font-weight: 700; margin-bottom: 28px; box-shadow: var(--sh);
 }
 .sticky-counter .cnt { color: var(--green); font-size: 1.05rem; }
 
 .q-card {
-  background: var(--white);
-  border-radius: var(--r);
-  padding: 28px;
-  margin-bottom: 14px;
-  box-shadow: var(--sh);
-  border: 1.5px solid transparent;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  background: var(--white); border-radius: var(--r);
+  padding: 28px; margin-bottom: 14px; box-shadow: var(--sh);
+  border: 1.5px solid transparent; transition: border-color 0.2s, box-shadow 0.2s;
 }
 .q-card.answered { border-color: rgba(26,140,78,0.3); }
-.q-card.error-q { border-color: var(--D); animation: shake 0.3s; }
-@keyframes shake {
-  0%,100%{transform:translateX(0)}
-  25%{transform:translateX(-5px)}
-  75%{transform:translateX(5px)}
-}
+.q-card.error-q  { border-color: var(--D); animation: shake 0.3s; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
 .q-num {
-  font-size: 0.68rem; font-weight: 800;
-  letter-spacing: 2px; text-transform: uppercase;
+  font-size: 0.68rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
   color: var(--dim); margin-bottom: 10px;
 }
 .q-prompt { font-size: 1rem; font-weight: 600; margin-bottom: 18px; }
@@ -317,29 +259,16 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 .opt input { display: none; }
 .opt-body {
   display: flex; align-items: center; gap: 12px;
-  padding: 12px 16px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  background: var(--paper);
-  font-size: 0.9rem; font-weight: 600;
+  padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 10px;
+  background: var(--paper); font-size: 0.9rem; font-weight: 500;
   transition: all 0.18s; user-select: none;
 }
 .opt-body::before {
-  content: '';
-  width: 18px; height: 18px;
-  border: 2px solid var(--border);
-  border-radius: 50%; flex-shrink: 0;
-  transition: all 0.18s; background: var(--white);
+  content: ''; width: 18px; height: 18px; border: 2px solid var(--border);
+  border-radius: 50%; flex-shrink: 0; transition: all 0.18s; background: var(--white);
 }
-.opt input:checked + .opt-body {
-  border-color: var(--green);
-  background: rgba(26,140,78,0.07);
-  color: var(--green);
-}
-.opt input:checked + .opt-body::before {
-  background: var(--green); border-color: var(--green);
-  box-shadow: inset 0 0 0 3px #fff;
-}
+.opt input:checked + .opt-body { border-color: var(--green); background: rgba(26,140,78,0.07); color: var(--green); }
+.opt input:checked + .opt-body::before { background: var(--green); border-color: var(--green); box-shadow: inset 0 0 0 3px #fff; }
 .opt:hover .opt-body { border-color: var(--green); background: rgba(26,140,78,0.04); }
 
 /* ══════════════════════════════════════════════
@@ -348,44 +277,27 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 14px 30px; border-radius: 12px;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 0.9rem; font-weight: 700;
-  cursor: pointer; border: none;
-  transition: all 0.2s; letter-spacing: 0.3px;
+  cursor: pointer; border: none; transition: all 0.2s; letter-spacing: 0.3px;
 }
-.btn-primary {
-  background: var(--green); color: #fff;
-  box-shadow: 0 4px 16px rgba(26,140,78,0.28);
-}
+.btn-primary { background: var(--green); color: #fff; box-shadow: 0 4px 16px rgba(26,140,78,0.28); }
 .btn-primary:hover { background: #157340; transform: translateY(-1px); box-shadow: 0 6px 22px rgba(26,140,78,0.35); }
 .btn-primary:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
-.btn-ghost {
-  background: var(--cream); color: var(--slate);
-  border: 1px solid var(--border);
-}
-.btn-ghost:hover { background: var(--border); }
-.btn-dark {
-  background: var(--navy); color: #fff;
-  box-shadow: 0 4px 16px rgba(15,31,61,0.25);
-}
-.btn-dark:hover { background: #1a3263; transform: translateY(-1px); }
-.btn-amber {
-  background: var(--amber); color: var(--ink);
-  box-shadow: 0 4px 16px rgba(201,150,15,0.28);
-}
-.btn-amber:hover { background: #d4a012; transform: translateY(-1px); }
-.btn-row {
-  display: flex; gap: 12px; justify-content: flex-end;
-  margin-top: 28px; flex-wrap: wrap;
-}
+.btn-ghost  { background: var(--cream); color: var(--slate); border: 1px solid var(--border); }
+.btn-ghost:hover  { background: var(--border); }
+.btn-dark   { background: var(--navy); color: #fff; box-shadow: 0 4px 16px rgba(15,31,61,0.25); }
+.btn-dark:hover   { background: #1a3263; transform: translateY(-1px); }
+.btn-amber  { background: var(--amber); color: var(--ink); box-shadow: 0 4px 16px rgba(201,150,15,0.28); }
+.btn-amber:hover  { background: #d4a012; transform: translateY(-1px); }
+.btn-row { display: flex; gap: 12px; justify-content: flex-end; margin-top: 28px; flex-wrap: wrap; }
 
 /* ══════════════════════════════════════════════
    ALERTS
 ══════════════════════════════════════════════ */
 .val-alert, .api-error {
-  background: #fff4f4; border: 1px solid #f5a5a5;
-  border-radius: 10px; padding: 13px 18px;
-  color: #b91c1c; font-size: 0.87rem; font-weight: 600;
+  background: #fff4f4; border: 1px solid #f5a5a5; border-radius: 10px;
+  padding: 13px 18px; color: #b91c1c; font-size: 0.87rem; font-weight: 600;
   margin-bottom: 16px; display: none;
 }
 .val-alert.show, .api-error.show { display: block; }
@@ -396,15 +308,13 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 #loading-overlay {
   display: none; position: fixed; inset: 0;
   background: rgba(13,13,20,0.88); z-index: 9999;
-  align-items: center; justify-content: center;
-  flex-direction: column; gap: 20px;
+  align-items: center; justify-content: center; flex-direction: column; gap: 20px;
 }
 #loading-overlay.show { display: flex; }
 .spinner {
   width: 50px; height: 50px;
   border: 4px solid rgba(255,255,255,0.12);
-  border-top-color: var(--green2);
-  border-radius: 50%;
+  border-top-color: var(--green2); border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -414,13 +324,9 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
    RESULTS — HERO
 ══════════════════════════════════════════════ */
 .results-hero {
-  background: var(--navy);
-  border-radius: 24px;
-  padding: 52px 48px 44px;
-  color: #fff;
-  text-align: center;
-  margin-bottom: 32px;
-  position: relative; overflow: hidden;
+  background: var(--navy); border-radius: 24px;
+  padding: 52px 48px 44px; color: #fff; text-align: center;
+  margin-bottom: 32px; position: relative; overflow: hidden;
 }
 .results-hero-bg {
   position: absolute; inset: 0;
@@ -435,55 +341,40 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
   background: radial-gradient(circle, rgba(26,140,78,0.28), transparent 65%);
 }
 .result-user-tag {
-  font-size: 0.8rem; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--green2);
-  margin-bottom: 14px; position: relative; z-index: 1;
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--green2); margin-bottom: 14px; position: relative; z-index: 1;
 }
 .results-hero h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900;
   position: relative; z-index: 1; margin-bottom: 8px;
 }
-.results-hero-sub {
-  color: rgba(255,255,255,0.55); font-size: 0.9rem;
-  position: relative; z-index: 1;
-}
+.results-hero-sub { color: rgba(255,255,255,0.55); font-size: 0.9rem; position: relative; z-index: 1; }
 .result-share-link {
-  display: inline-block;
-  margin-top: 16px; padding: 8px 18px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.7);
-  font-size: 0.78rem; font-weight: 600;
-  cursor: pointer; transition: all 0.2s;
-  position: relative; z-index: 1;
-  user-select: none;
+  display: inline-block; margin-top: 16px; padding: 8px 18px;
+  border-radius: 999px; background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);
+  font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+  position: relative; z-index: 1; user-select: none;
 }
 .result-share-link:hover { background: rgba(255,255,255,0.14); color: #fff; }
 
 /* PROFILE BADGES */
-.profiles-row {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 16px; margin-bottom: 28px;
-}
+.profiles-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
 @media(max-width: 520px) { .profiles-row { grid-template-columns: 1fr; } }
 .profile-badge {
-  border-radius: 20px; padding: 30px 26px;
-  color: #fff; position: relative; overflow: hidden;
+  border-radius: 20px; padding: 30px 26px; color: #fff; position: relative; overflow: hidden;
 }
 .profile-badge::after {
-  content: attr(data-letter);
-  position: absolute; right: -6px; bottom: -20px;
-  font-family: 'Playfair Display', serif;
-  font-size: 8rem; font-weight: 900;
-  opacity: 0.1; line-height: 1;
+  content: attr(data-letter); position: absolute; right: -6px; bottom: -20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8rem; font-weight: 900; opacity: 0.1; line-height: 1;
 }
 .pb-rank { font-size: 0.68rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; opacity: 0.75; margin-bottom: 10px; }
-.pb-letter { font-family: 'Playfair Display', serif; font-size: 4rem; line-height: 1; margin-bottom: 6px; }
-.pb-name { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
-.pb-score { font-size: 0.82rem; opacity: 0.75; margin-bottom: 12px; }
-.pb-short { font-size: 0.78rem; opacity: 0.82; line-height: 1.55; }
+.pb-letter { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+.pb-name   { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+.pb-score  { font-size: 0.82rem; opacity: 0.75; margin-bottom: 12px; }
+.pb-short  { font-size: 0.78rem; opacity: 0.82; line-height: 1.55; }
 .badge-D { background: linear-gradient(135deg, #9b1c1c, #c0392b); }
 .badge-I { background: linear-gradient(135deg, #92400e, #d4820a); }
 .badge-S { background: linear-gradient(135deg, #14532d, #1a8c4e); }
@@ -492,131 +383,118 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 /* COMBINED CARD */
 .combined-card {
   background: var(--white); border-radius: 20px;
-  padding: 36px; margin-bottom: 24px;
-  border: 1px solid var(--border); box-shadow: var(--sh);
+  padding: 36px; margin-bottom: 24px; border: 1px solid var(--border); box-shadow: var(--sh);
 }
 .combined-label {
-  font-size: 0.7rem; font-weight: 800;
-  letter-spacing: 2.5px; text-transform: uppercase;
+  font-size: 0.7rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase;
   color: var(--green); margin-bottom: 10px;
 }
 .combined-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem; margin-bottom: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem; font-weight: 800; margin-bottom: 12px;
 }
 .combined-card p { color: var(--slate); line-height: 1.75; font-size: 0.95rem; }
 .traits-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .trait-tag {
   padding: 5px 13px; border-radius: 999px;
-  font-size: 0.75rem; font-weight: 700;
-  background: var(--cream); color: var(--slate);
+  font-size: 0.75rem; font-weight: 700; background: var(--cream); color: var(--slate);
 }
 .trait-tag.strength { background: rgba(26,140,78,0.1); color: var(--green); }
-.trait-tag.risk { background: rgba(192,57,43,0.09); color: var(--D); }
+.trait-tag.risk     { background: rgba(192,57,43,0.09); color: var(--D); }
 
 /* SCORES CARD */
 .scores-card {
   background: var(--white); border-radius: 20px;
-  padding: 36px; margin-bottom: 24px;
-  border: 1px solid var(--border); box-shadow: var(--sh);
+  padding: 36px; margin-bottom: 24px; border: 1px solid var(--border); box-shadow: var(--sh);
 }
 .scores-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.35rem; margin-bottom: 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.35rem; font-weight: 800; margin-bottom: 24px;
 }
 .score-item { margin-bottom: 20px; }
-.score-label-row {
-  display: flex; justify-content: space-between;
-  align-items: center; margin-bottom: 8px;
-}
-.score-label {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 0.88rem; font-weight: 700;
-}
-.disc-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.score-label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.score-label { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 700; }
+.disc-dot    { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 .band-pill {
-  font-size: 0.65rem; font-weight: 800;
-  letter-spacing: 1.2px; text-transform: uppercase;
+  font-size: 0.65rem; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase;
   padding: 3px 9px; border-radius: 999px;
 }
-.band-High   { background: rgba(26,140,78,0.12);  color: var(--green); }
+.band-High     { background: rgba(26,140,78,0.12);  color: var(--green); }
 .band-Moderate { background: rgba(212,130,10,0.12); color: var(--I); }
-.band-Low    { background: rgba(74,85,104,0.1);   color: var(--slate); }
-.score-nums { font-size: 0.82rem; color: var(--dim); font-weight: 600; }
-.bar-track {
-  background: var(--cream); border-radius: 999px;
-  height: 10px; overflow: hidden;
-}
-.bar-fill {
-  height: 100%; border-radius: 999px;
-  width: 0%; transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
-}
+.band-Low      { background: rgba(74,85,104,0.1);   color: var(--slate); }
+.score-nums    { font-size: 0.82rem; color: var(--dim); font-weight: 600; }
+.bar-track     { background: var(--cream); border-radius: 999px; height: 10px; overflow: hidden; }
+.bar-fill      { height: 100%; border-radius: 999px; width: 0%; transition: width 0.8s cubic-bezier(0.4,0,0.2,1); }
 
 /* ACTION PLAN */
 .action-card {
   background: var(--white); border-radius: 20px;
-  padding: 36px; margin-bottom: 24px;
-  border: 1px solid var(--border); box-shadow: var(--sh);
+  padding: 36px; margin-bottom: 24px; border: 1px solid var(--border); box-shadow: var(--sh);
 }
 .action-card h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.35rem; margin-bottom: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.35rem; font-weight: 800; margin-bottom: 6px;
 }
 .action-card > p { color: var(--dim); font-size: 0.88rem; margin-bottom: 24px; }
+
+/* Action plan items — alternating left-border colours */
 .plan-item {
   border-left: 3px solid var(--green);
   padding: 18px 20px; border-radius: 0 12px 12px 0;
   background: var(--paper); margin-bottom: 14px;
 }
-.plan-item + .plan-item { border-left-color: var(--D); }
+.plan-item:nth-child(2) { border-left-color: var(--D); }
 .plan-item:nth-child(3) { border-left-color: var(--I); }
 .plan-item:nth-child(4) { border-left-color: var(--C); }
 .plan-label {
-  font-size: 0.68rem; font-weight: 800;
-  letter-spacing: 2px; text-transform: uppercase;
+  font-size: 0.68rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
   color: var(--dim); margin-bottom: 6px;
 }
 .plan-text { font-size: 0.9rem; color: var(--ink); line-height: 1.65; font-weight: 500; }
 
 /* DISC INFO GRID */
-.disc-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 16px; margin-bottom: 24px;
-}
+.disc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
 @media(max-width: 520px) { .disc-grid { grid-template-columns: 1fr; } }
 .disc-info-card {
   background: var(--white); border-radius: var(--r);
-  padding: 24px; border: 1px solid var(--border);
-  box-shadow: var(--sh);
+  padding: 24px; border: 1px solid var(--border); box-shadow: var(--sh);
 }
 .di-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
 .di-icon {
   width: 40px; height: 40px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem; font-weight: 900; color: #fff; flex-shrink: 0;
+  font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 900; color: #fff; flex-shrink: 0;
 }
-.icon-D { background: var(--D); }
-.icon-I { background: var(--I); }
-.icon-S { background: var(--S); }
-.icon-C { background: var(--C); }
-.di-top h4 { font-size: 0.95rem; font-weight: 700; }
-.di-top p { font-size: 0.78rem; color: var(--dim); }
+.icon-D { background: var(--D); } .icon-I { background: var(--I); }
+.icon-S { background: var(--S); } .icon-C { background: var(--C); }
+.di-top h4 { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 700; }
+.di-top p  { font-size: 0.78rem; color: var(--dim); }
 .disc-info-card > p { font-size: 0.83rem; color: var(--slate); line-height: 1.65; }
 
 /* ══════════════════════════════════════════════
-   PDF TARGET (hidden visually but printable)
+   PDF TARGET
+   ─────────────────────────────────────────────
+   KEY FIX: position off-screen (not display:none).
+   html2canvas can only render VISIBLE elements —
+   display:none elements produce blank output.
+   Absolute + left:-9999px keeps it painted but
+   invisible to the user.
 ══════════════════════════════════════════════ */
-#pdf-target { display: none; }
+#pdf-target {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  width: 780px;      /* A4-ish at 96 dpi */
+  background: #fff;
+  z-index: -1;
+  pointer-events: none;
+}
 
-/* ══════════════════════════════════════════════
-   SUPABASE CONFIG BANNER
-══════════════════════════════════════════════ */
+/* CONFIG BANNER */
 .config-banner {
   background: var(--cream); border: 1px dashed var(--gold);
-  border-radius: 12px; padding: 16px 20px;
-  margin-bottom: 24px; font-size: 0.82rem;
-  color: var(--slate); line-height: 1.65;
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 24px;
+  font-size: 0.82rem; color: var(--slate); line-height: 1.65;
 }
 .config-banner strong { color: var(--ink); }
 .config-banner code {
@@ -651,11 +529,17 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
   <p id="loading-msg">Processing your results…</p>
 </div>
 
+<!--
+  ══ PDF TARGET ══
+  Always in DOM and "rendered" by the browser (just off-screen).
+  html2canvas can capture it correctly at any time.
+-->
+<div id="pdf-target"></div>
+
 <main>
 
 <!-- ══ SECTION 1: WELCOME ══ -->
 <div id="sec-welcome" class="section active">
-
   <div class="hero">
     <div class="hero-grid-bg"></div>
     <div class="hero-glow"></div>
@@ -672,27 +556,14 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
   </div>
 
   <div class="notice-row">
-    <div class="notice-card">
-      <h4>⏱ Time</h4>
-      <p>Takes approximately 5–8 minutes. Answer all 24 questions honestly.</p>
-    </div>
-    <div class="notice-card">
-      <h4>🎯 Accuracy</h4>
-      <p>Choose the word that feels most like you right now — not who you want to be.</p>
-    </div>
-    <div class="notice-card">
-      <h4>🔒 Privacy</h4>
-      <p>Your data is stored securely and never shared without your consent.</p>
-    </div>
-    <div class="notice-card">
-      <h4>📄 Report</h4>
-      <p>Download a full PDF report and share your unique results link.</p>
-    </div>
+    <div class="notice-card"><h4>⏱ Time</h4><p>Takes approximately 5–8 minutes. Answer all 24 questions honestly.</p></div>
+    <div class="notice-card"><h4>🎯 Accuracy</h4><p>Choose the word that feels most like you right now — not who you want to be.</p></div>
+    <div class="notice-card"><h4>🔒 Privacy</h4><p>Your data is stored securely and never shared without your consent.</p></div>
+    <div class="notice-card"><h4>📄 Report</h4><p>Download a full PDF report and share your unique results link.</p></div>
   </div>
 
-  <!-- Supabase config notice — replace keys in JS below -->
   <div class="config-banner" id="config-banner">
-    <strong>⚙ Setup Required:</strong> Replace <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> at the top of the &lt;script&gt; section with your Supabase project credentials. See the Setup Guide below for instructions.
+    <strong>⚙ Setup Required:</strong> Replace <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> at the top of the &lt;script&gt; with your Supabase credentials.
   </div>
 
   <div class="form-card">
@@ -746,9 +617,9 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
   </div>
   <div id="q-container"></div>
   <div class="val-alert" id="val-alert">⚠ Please answer all 24 questions before submitting.</div>
-  <div class="api-error" id="api-error"></div>
+  <div class="api-error"  id="api-error"></div>
   <div class="btn-row">
-    <button class="btn btn-ghost" onclick="goBack()">← Back</button>
+    <button class="btn btn-ghost"   onclick="goBack()">← Back</button>
     <button class="btn btn-primary" id="submit-btn" onclick="submitAssessment()">Submit & See Results →</button>
   </div>
 </div>
@@ -766,41 +637,37 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 
   <div class="profiles-row" id="profiles-row"></div>
   <div class="combined-card" id="combined-card"></div>
-  <div class="scores-card" id="scores-card"></div>
-  <div class="action-card" id="action-card"></div>
-  <div class="disc-grid" id="disc-grid"></div>
+  <div class="scores-card"   id="scores-card"></div>
+  <div class="action-card"   id="action-card"></div>
+  <div class="disc-grid"     id="disc-grid"></div>
 
   <div class="btn-row" style="justify-content:center; margin-bottom: 20px;">
-    <button class="btn btn-dark" id="pdf-btn" onclick="downloadPDF()" style="display:none;">⬇ Download PDF Report</button>
+    <button class="btn btn-dark"  id="pdf-btn" onclick="downloadPDF()" style="display:none;">⬇ Download PDF Report</button>
     <button class="btn btn-ghost" onclick="restartAssessment()">↺ Take Again</button>
   </div>
 </div>
 
 </main>
 
-<!-- PDF HIDDEN TARGET -->
-<div id="pdf-target"></div>
-
 <script>
-/* ════════════════════════════════════════════════════════════════
-   ⚙ CONFIGURATION — Replace with your Supabase credentials
-   Get these from: https://supabase.com → your project → Settings → API
-════════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   ⚙ CONFIGURATION
+══════════════════════════════════════════════ */
 const SUPABASE_URL      = 'https://pungbkhzytoqdiycmjnq.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB1bmdia2h6eXRvcWRpeWNtam5xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNTc0MzQsImV4cCI6MjA5MjYzMzQzNH0.ofTuKhS5cWOnQJqc9MytgkvvWmjrJH8yo8QoCsqAvaA';
 
-/* ════════════════════════════════════════════════════════════════
-   SUPABASE CLIENT (lightweight, no SDK needed)
-════════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   SUPABASE CLIENT (no SDK — raw fetch)
+══════════════════════════════════════════════ */
 const db = {
   async insert(table, data) {
     const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'apikey': SUPABASE_ANON_KEY,
+        'Content-Type':  'application/json',
+        'apikey':        SUPABASE_ANON_KEY,
         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-        'Prefer': 'return=representation'
+        'Prefer':        'return=representation'
       },
       body: JSON.stringify(data)
     });
@@ -810,10 +677,7 @@ const db = {
   },
   async select(table, id) {
     const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {
-      headers: {
-        'apikey': SUPABASE_ANON_KEY,
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-      }
+      headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` }
     });
     const json = await r.json();
     if (!r.ok) throw new Error(json.message || 'Database error');
@@ -821,163 +685,123 @@ const db = {
   }
 };
 
-/* ════════════════════════════════════════════════════════════════
-   QUESTION DATA
-   Each option maps to a DISC type:
-   Index 0 = type based on scoring map below
-════════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   QUESTION DATA — options + per-position DISC map
+══════════════════════════════════════════════ */
 const questions = [
-  { opts: ["Restrained","Forceful","Careful","Expressive"],      map: ["S","D","C","I"] },
-  { opts: ["Pioneering","Correct","Exciting","Satisfied"],       map: ["D","C","I","S"] },
-  { opts: ["Willing","Animated","Bold","Precise"],               map: ["S","I","D","C"] },
-  { opts: ["Argumentative","Doubting","Indecisive","Unpredictable"], map: ["D","C","S","I"] },
-  { opts: ["Respectful","Out-going","Patient","Daring"],         map: ["C","I","S","D"] },
-  { opts: ["Persuasive","Self-reliant","Logical","Gentle"],      map: ["I","D","C","S"] },
-  { opts: ["Cautious","Even-tempered","Decisive","Life-of-the-party"], map: ["C","S","D","I"] },
-  { opts: ["Popular","Assertive","Perfectionist","Generous"],    map: ["I","D","C","S"] },
-  { opts: ["Colorful","Modest","Easy-going","Unyielding"],       map: ["I","C","S","D"] },
-  { opts: ["Systematic","Optimistic","Persistent","Accommodating"], map: ["C","I","D","S"] },
-  { opts: ["Relentless","Humble","Neighborly","Talkative"],      map: ["D","C","S","I"] },
-  { opts: ["Friendly","Observant","Playful","Strong-willed"],    map: ["S","C","I","D"] },
-  { opts: ["Charming","Adventurous","Disciplined","Deliberate"], map: ["I","D","C","S"] },
-  { opts: ["Restrained","Steady","Aggressive","Attractive"],     map: ["C","S","D","I"] },
-  { opts: ["Enthusiastic","Analytical","Sympathetic","Determined"], map: ["I","C","S","D"] },
-  { opts: ["Commanding","Impulsive","Slow-paced","Critical"],    map: ["D","I","S","C"] },
-  { opts: ["Consistent","Force-of-character","Lively","Laid-back"], map: ["S","D","I","C"] },
-  { opts: ["Influential","Kind","Independent","Orderly"],        map: ["I","S","D","C"] },
-  { opts: ["Idealistic","Popular","Pleasant","Out-spoken"],      map: ["C","I","S","D"] },
-  { opts: ["Impatient","Serious","Procrastinator","Emotional"],  map: ["D","C","S","I"] },
-  { opts: ["Competitive","Spontaneous","Loyal","Thoughtful"],    map: ["D","I","S","C"] },
-  { opts: ["Self-sacrificing","Considerate","Convincing","Courageous"], map: ["S","C","I","D"] },
-  { opts: ["Dependent","Flighty","Stoic","Pushy"],               map: ["S","I","C","D"] },
-  { opts: ["Tolerant","Conventional","Stimulating","Directing"], map: ["S","C","I","D"] },
+  { opts: ["Restrained","Forceful","Careful","Expressive"],           map: ["S","D","C","I"] },
+  { opts: ["Pioneering","Correct","Exciting","Satisfied"],            map: ["D","C","I","S"] },
+  { opts: ["Willing","Animated","Bold","Precise"],                    map: ["S","I","D","C"] },
+  { opts: ["Argumentative","Doubting","Indecisive","Unpredictable"],  map: ["D","C","S","I"] },
+  { opts: ["Respectful","Out-going","Patient","Daring"],              map: ["C","I","S","D"] },
+  { opts: ["Persuasive","Self-reliant","Logical","Gentle"],           map: ["I","D","C","S"] },
+  { opts: ["Cautious","Even-tempered","Decisive","Life-of-the-party"],map: ["C","S","D","I"] },
+  { opts: ["Popular","Assertive","Perfectionist","Generous"],         map: ["I","D","C","S"] },
+  { opts: ["Colorful","Modest","Easy-going","Unyielding"],            map: ["I","C","S","D"] },
+  { opts: ["Systematic","Optimistic","Persistent","Accommodating"],   map: ["C","I","D","S"] },
+  { opts: ["Relentless","Humble","Neighborly","Talkative"],           map: ["D","C","S","I"] },
+  { opts: ["Friendly","Observant","Playful","Strong-willed"],         map: ["S","C","I","D"] },
+  { opts: ["Charming","Adventurous","Disciplined","Deliberate"],      map: ["I","D","C","S"] },
+  { opts: ["Restrained","Steady","Aggressive","Attractive"],          map: ["C","S","D","I"] },
+  { opts: ["Enthusiastic","Analytical","Sympathetic","Determined"],   map: ["I","C","S","D"] },
+  { opts: ["Commanding","Impulsive","Slow-paced","Critical"],         map: ["D","I","S","C"] },
+  { opts: ["Consistent","Force-of-character","Lively","Laid-back"],   map: ["S","D","I","C"] },
+  { opts: ["Influential","Kind","Independent","Orderly"],             map: ["I","S","D","C"] },
+  { opts: ["Idealistic","Popular","Pleasant","Out-spoken"],           map: ["C","I","S","D"] },
+  { opts: ["Impatient","Serious","Procrastinator","Emotional"],       map: ["D","C","S","I"] },
+  { opts: ["Competitive","Spontaneous","Loyal","Thoughtful"],         map: ["D","I","S","C"] },
+  { opts: ["Self-sacrificing","Considerate","Convincing","Courageous"],map:["S","C","I","D"] },
+  { opts: ["Dependent","Flighty","Stoic","Pushy"],                    map: ["S","I","C","D"] },
+  { opts: ["Tolerant","Conventional","Stimulating","Directing"],      map: ["S","C","I","D"] },
 ];
 
-/* ════════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════
    DISC KNOWLEDGE BASE
-════════════════════════════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 const DISC_INFO = {
-  D: {
-    name: 'Dominance',
-    short: 'Results-oriented, direct, decisive',
-    desc: 'D-style individuals are driven by challenges and results. They are direct, decisive, and thrive in competitive environments.',
-    traits: ['Direct','Results-focused','Decisive','Competitive','Independent','Bold'],
-    color: '#c0392b'
-  },
-  I: {
-    name: 'Influence',
-    short: 'Enthusiastic, optimistic, collaborative',
-    desc: 'I-style individuals are enthusiastic communicators who inspire others. They thrive on collaboration, recognition, and positive energy.',
-    traits: ['Enthusiastic','Optimistic','Collaborative','Persuasive','Creative','Social'],
-    color: '#d4820a'
-  },
-  S: {
-    name: 'Steadiness',
-    short: 'Patient, loyal, supportive',
-    desc: 'S-style individuals value stability, loyalty, and supportive relationships. They are dependable, patient, and excellent listeners.',
-    traits: ['Patient','Loyal','Supportive','Dependable','Consistent','Empathetic'],
-    color: '#1a8c4e'
-  },
-  C: {
-    name: 'Conscientiousness',
-    short: 'Analytical, precise, systematic',
-    desc: 'C-style individuals excel in structured environments. They are analytical, precise, and driven by quality and accuracy.',
-    traits: ['Analytical','Precise','Systematic','Quality-focused','Cautious','Methodical'],
-    color: '#1565a0'
-  }
+  D: { name:'Dominance',        short:'Results-oriented, direct, decisive',       desc:'D-style individuals are driven by challenges and results. They are direct, decisive, and thrive in competitive environments.',                                                              traits:['Direct','Results-focused','Decisive','Competitive','Independent','Bold'],    color:'#c0392b' },
+  I: { name:'Influence',        short:'Enthusiastic, optimistic, collaborative',  desc:'I-style individuals are enthusiastic communicators who inspire others. They thrive on collaboration, recognition, and positive energy.',                                                   traits:['Enthusiastic','Optimistic','Collaborative','Persuasive','Creative','Social'], color:'#d4820a' },
+  S: { name:'Steadiness',       short:'Patient, loyal, supportive',               desc:'S-style individuals value stability, loyalty, and supportive relationships. They are dependable, patient, and excellent listeners.',                                                        traits:['Patient','Loyal','Supportive','Dependable','Consistent','Empathetic'],        color:'#1a8c4e' },
+  C: { name:'Conscientiousness',short:'Analytical, precise, systematic',          desc:'C-style individuals excel in structured environments. They are analytical, precise, and driven by quality and accuracy.',                                                                   traits:['Analytical','Precise','Systematic','Quality-focused','Cautious','Methodical'],color:'#1565a0' },
 };
 
 const PROFILES = {
-  'D-I': { title: 'The Pioneer', summary: 'You combine bold decisiveness with infectious enthusiasm. You lead from the front, inspiring others while driving for results.' },
-  'D-S': { title: 'The Producer', summary: 'You balance relentless drive with steady determination. You work tirelessly toward goals with calm, consistent power.' },
-  'D-C': { title: 'The Architect', summary: 'You pair strong willpower with rigorous analysis. You set high standards, challenge the status quo, and demand excellence.' },
-  'I-D': { title: 'The Driver', summary: 'You combine energy and persuasion with bold decision-making. You inspire action and aren\'t afraid to push boundaries.' },
-  'I-S': { title: 'The Motivator', summary: 'You uplift others with warmth and enthusiasm while nurturing genuine relationships. People naturally trust and follow you.' },
-  'I-C': { title: 'The Evaluator', summary: 'You balance creative expression with careful analysis. You communicate ideas with energy while backing them up with logic.' },
-  'S-D': { title: 'The Anchor', summary: 'You provide steady, reliable strength with a quiet determination. You are the backbone of any team you join.' },
-  'S-I': { title: 'The Counselor', summary: 'You create deep connections with warmth and patience. You are the trusted heart of every team and relationship.' },
-  'S-C': { title: 'The Coordinator', summary: 'You combine methodical precision with calm reliability. You ensure everything runs smoothly through careful planning.' },
-  'C-D': { title: 'The Perfectionist', summary: 'You pursue excellence with a systematic and results-driven approach. Your high standards are a powerful competitive advantage.' },
-  'C-I': { title: 'The Innovator', summary: 'You blend structured thinking with creative communication. You turn complex ideas into compelling, logical narratives.' },
-  'C-S': { title: 'The Specialist', summary: 'You combine deep expertise with patient persistence. Your methodical approach and reliability make you an invaluable expert.' },
+  'D-I':{ title:'The Pioneer',     summary:'You combine bold decisiveness with infectious enthusiasm. You lead from the front, inspiring others while driving for results.' },
+  'D-S':{ title:'The Producer',    summary:'You balance relentless drive with steady determination. You work tirelessly toward goals with calm, consistent power.' },
+  'D-C':{ title:'The Architect',   summary:'You pair strong willpower with rigorous analysis. You set high standards, challenge the status quo, and demand excellence.' },
+  'I-D':{ title:'The Driver',      summary:"You combine energy and persuasion with bold decision-making. You inspire action and aren't afraid to push boundaries." },
+  'I-S':{ title:'The Motivator',   summary:'You uplift others with warmth and enthusiasm while nurturing genuine relationships. People naturally trust and follow you.' },
+  'I-C':{ title:'The Evaluator',   summary:'You balance creative expression with careful analysis. You communicate ideas with energy while backing them up with logic.' },
+  'S-D':{ title:'The Anchor',      summary:'You provide steady, reliable strength with a quiet determination. You are the backbone of any team you join.' },
+  'S-I':{ title:'The Counselor',   summary:'You create deep connections with warmth and patience. You are the trusted heart of every team and relationship.' },
+  'S-C':{ title:'The Coordinator', summary:'You combine methodical precision with calm reliability. You ensure everything runs smoothly through careful planning.' },
+  'C-D':{ title:'The Perfectionist',summary:'You pursue excellence with a systematic and results-driven approach. Your high standards are a powerful competitive advantage.' },
+  'C-I':{ title:'The Innovator',   summary:'You blend structured thinking with creative communication. You turn complex ideas into compelling, logical narratives.' },
+  'C-S':{ title:'The Specialist',  summary:'You combine deep expertise with patient persistence. Your methodical approach and reliability make you an invaluable expert.' },
 };
 
-/* ════════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════
    SCORING ENGINE
-════════════════════════════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 function computeScores(answers) {
-  const scores = { D: 0, I: 0, S: 0, C: 0 };
+  const scores = { D:0, I:0, S:0, C:0 };
   answers.forEach((ans, i) => {
-    const q = questions[i];
-    const idx = q.opts.indexOf(ans);
-    if (idx >= 0) scores[q.map[idx]]++;
+    const idx = questions[i].opts.indexOf(ans);
+    if (idx >= 0) scores[questions[i].map[idx]]++;
   });
   return scores;
 }
+function getBand(score) { return score >= 8 ? 'High' : score >= 4 ? 'Moderate' : 'Low'; }
+function getRanked(scores) { return Object.entries(scores).sort((a,b) => b[1]-a[1]).map(e => e[0]); }
 
-function getBand(score) {
-  if (score >= 8)  return 'High';
-  if (score >= 4)  return 'Moderate';
-  return 'Low';
-}
-
-function getRanked(scores) {
-  return Object.entries(scores).sort((a,b) => b[1]-a[1]).map(e => e[0]);
-}
-
-function getActionPlan(ranked, bands, position) {
+function getActionPlan(ranked, position) {
   const isLeader = /lead|manager|director|head|ceo|cto|vp|executive|supervisor|chief/i.test(position);
-  const roleCtx  = isLeader ? 'leadership' : 'contributor';
   const primary  = ranked[0];
-  const info     = DISC_INFO[primary];
-  const band     = bands[primary];
-
   const plans = {
     D: {
-      strength: isLeader ? 'Use your decisiveness to set a clear vision and drive the team toward ambitious goals.' : 'Your drive helps you take ownership of challenging projects and deliver results independently.',
-      blind_spot: 'Your directness can come across as dismissive of others\' input — slow down to listen actively.',
-      action: 'Practice pausing for 60 seconds before responding in tense conversations to allow reflection.',
-      habit: isLeader ? 'Hold a weekly 10-minute "team pulse" check-in to hear concerns before making final calls.' : 'Ask one colleague for feedback on your approach after each major project.'
+      strength:   isLeader ? 'Use your decisiveness to set a clear vision and drive the team toward ambitious goals.' : 'Your drive helps you take ownership of challenging projects and deliver results independently.',
+      blind_spot: 'Your directness can come across as dismissive — slow down to genuinely listen before responding.',
+      action:     'Practice pausing for 60 seconds before responding in tense conversations to allow reflection.',
+      habit:      isLeader ? 'Hold a weekly 10-minute "team pulse" check-in to hear concerns before making final calls.' : 'Ask one colleague for feedback on your approach after each major project.'
     },
     I: {
-      strength: isLeader ? 'Your enthusiasm galvanises your team — use storytelling to align people around the mission.' : 'Your optimism and communication skills make you a natural connector and relationship builder.',
-      blind_spot: 'You may over-promise or avoid difficult conversations — practice structured follow-through.',
-      action: 'End each day by writing down three commitments and one follow-up you completed.',
-      habit: isLeader ? 'Implement a monthly "accountability spotlight" where the team celebrates completed commitments.' : 'Block 30 minutes each Friday to document what you said you\'d do and what you actually did.'
+      strength:   isLeader ? 'Your enthusiasm galvanises your team — use storytelling to align people around the mission.' : 'Your optimism and communication skills make you a natural connector and relationship builder.',
+      blind_spot: 'You may over-promise or avoid difficult conversations — build in structured follow-through.',
+      action:     'End each day by writing down three commitments and one follow-up you completed.',
+      habit:      isLeader ? 'Implement a monthly "accountability spotlight" where the team celebrates completed commitments.' : 'Block 30 minutes each Friday to document what you said you\'d do vs. what you actually did.'
     },
     S: {
-      strength: isLeader ? 'Your consistency and empathy build profound team trust — leverage this to retain top talent.' : 'Your reliability and supportiveness make you the stabilising force others depend on.',
-      blind_spot: 'Avoiding conflict can let issues fester — learn to initiate hard conversations with care.',
-      action: 'Write down one concern per week and commit to raising it with the relevant person within 48 hours.',
-      habit: isLeader ? 'Schedule a monthly one-on-one with each team member specifically to address tensions early.' : 'Practise saying "I disagree, and here\'s why" at least once per week in low-stakes settings.'
+      strength:   isLeader ? 'Your consistency and empathy build profound team trust — leverage this to retain top talent.' : 'Your reliability and supportiveness make you the stabilising force others depend on.',
+      blind_spot: 'Avoiding conflict can let issues fester — learn to initiate hard conversations with care and structure.',
+      action:     'Write down one concern per week and commit to raising it with the relevant person within 48 hours.',
+      habit:      isLeader ? 'Schedule a monthly one-on-one with each team member specifically to address tensions early.' : 'Practise saying "I disagree, and here\'s why" at least once per week in low-stakes settings.'
     },
     C: {
-      strength: isLeader ? 'Your analytical rigour sets the quality standard for your team — use it to build robust processes.' : 'Your precision and thoroughness produce work of exceptional quality that others rely on.',
-      blind_spot: 'Perfectionism can slow decisions and frustrate collaborators — learn to define "good enough."',
-      action: 'Set explicit "done" criteria before starting any task to prevent scope creep.',
-      habit: isLeader ? 'Introduce a "ship it" rule: once 80% quality is reached, release and iterate based on feedback.' : 'Timebox your own review cycles — set a timer and commit to finishing reviews within that window.'
+      strength:   isLeader ? 'Your analytical rigour sets the quality standard for your team — use it to build robust processes.' : 'Your precision and thoroughness produce work of exceptional quality that others rely on.',
+      blind_spot: 'Perfectionism can slow decisions and frustrate collaborators — define "good enough" before you begin.',
+      action:     'Set explicit "done" criteria before starting any task to prevent scope creep and over-analysis.',
+      habit:      isLeader ? 'Introduce a "ship it" rule: once 80% quality is reached, release and iterate on feedback.' : 'Timebox your review cycles — set a timer and commit to finishing within that window.'
     }
   };
-
   const p = plans[primary];
   return [
-    { label: 'Key Strength',              text: p.strength },
-    { label: 'Potential Blind Spot',       text: p.blind_spot },
-    { label: 'Recommended Behaviour Change', text: p.action },
-    { label: 'Practical Habit',            text: p.habit },
+    { label:'Key Strength',                text: p.strength   },
+    { label:'Potential Blind Spot',        text: p.blind_spot },
+    { label:'Recommended Behaviour Change',text: p.action     },
+    { label:'Practical Habit',             text: p.habit      },
   ];
 }
 
-/* ════════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════
    STATE
-════════════════════════════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 let answeredCount = 0;
 let currentId     = null;
 let currentResult = null;
 
-/* ════════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════
    BUILD QUESTIONS
-════════════════════════════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 function buildQuestions() {
   const c = document.getElementById('q-container');
   c.innerHTML = ''; answeredCount = 0;
@@ -1007,17 +831,16 @@ function onOpt(i) {
   }
   card.classList.remove('error-q');
   card.classList.add('answered');
-  const pct = 33 + Math.round((answeredCount / 24) * 67);
-  document.getElementById('prog').style.width = pct + '%';
+  document.getElementById('prog').style.width = (33 + Math.round((answeredCount / 24) * 67)) + '%';
 }
 
-/* ════════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════
    NAVIGATION
-════════════════════════════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 function show(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top:0, behavior:'smooth' });
 }
 function goToQuestions() {
   if (!validateForm()) return;
@@ -1031,12 +854,12 @@ function goBack() {
   show('sec-welcome');
 }
 
-/* ════════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════
    VALIDATION
-════════════════════════════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 function validateForm() {
   let ok = true;
-  [['firstName','text'],['lastName','text'],['email','email'],['position','text']].forEach(([id,type]) => {
+  [['firstName','text'],['lastName','text'],['email','email'],['position','text']].forEach(([id, type]) => {
     const el  = document.getElementById(id);
     const err = document.getElementById(`err-${id}`);
     let valid = el.value.trim() !== '';
@@ -1052,11 +875,10 @@ function validateForm() {
   return ok;
 }
 
-/* ════════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════
    SUBMIT
-════════════════════════════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 async function submitAssessment() {
-  // Check all answered
   const missing = [];
   questions.forEach((_,i) => { if (!document.querySelector(`input[name="q${i}"]:checked`)) missing.push(i); });
   if (missing.length) {
@@ -1068,18 +890,14 @@ async function submitAssessment() {
   document.getElementById('val-alert').classList.remove('show');
   document.getElementById('api-error').classList.remove('show');
 
-  const answers = questions.map((_,i) => document.querySelector(`input[name="q${i}"]:checked`).value);
-
-  // Compute
-  const scores  = computeScores(answers);
-  const ranked  = getRanked(scores);
-  const primary = ranked[0], secondary = ranked[1];
-  const bands   = { D: getBand(scores.D), I: getBand(scores.I), S: getBand(scores.S), C: getBand(scores.C) };
-  const profileKey = `${primary}-${secondary}`;
-  const profile = PROFILES[profileKey] || { title: `The ${DISC_INFO[primary].name}`, summary: `Your dominant ${primary} style defines how you approach work and relationships.` };
-
-  const position  = document.getElementById('position').value.trim();
-  const actionPlan = getActionPlan(ranked, bands, position);
+  const answers  = questions.map((_,i) => document.querySelector(`input[name="q${i}"]:checked`).value);
+  const scores   = computeScores(answers);
+  const ranked   = getRanked(scores);
+  const primary  = ranked[0], secondary = ranked[1];
+  const bands    = { D:getBand(scores.D), I:getBand(scores.I), S:getBand(scores.S), C:getBand(scores.C) };
+  const profile  = PROFILES[`${primary}-${secondary}`] || { title:`The ${DISC_INFO[primary].name}`, summary:`Your dominant ${primary} style defines how you approach work and relationships.` };
+  const position = document.getElementById('position').value.trim();
+  const actionPlan = getActionPlan(ranked, position);
 
   const user = {
     first_name: document.getElementById('firstName').value.trim(),
@@ -1089,54 +907,50 @@ async function submitAssessment() {
     gender: document.querySelector('input[name="gender"]:checked').value,
   };
 
-  const resultPayload = {
-    scores, bands, ranked, primary_type: primary,
-    secondary_type: secondary, profile, action_plan: actionPlan, user
-  };
+  const resultPayload = { scores, bands, ranked, primary_type:primary, secondary_type:secondary, profile, action_plan:actionPlan, user };
 
-  // Save to Supabase
   const overlay = document.getElementById('loading-overlay');
   const btn     = document.getElementById('submit-btn');
   overlay.classList.add('show');
   btn.disabled = true;
 
   try {
-    // Check if Supabase is configured
-    const configured = SUPABASE_URL !== 'https://YOUR_PROJECT.supabase.co';
     let savedId = null;
-
-    if (configured) {
+    if (SUPABASE_URL !== 'https://YOUR_PROJECT.supabase.co') {
       document.getElementById('loading-msg').textContent = 'Saving your results…';
       const saved = await db.insert('disc_assessments', {
-        first_name:     user.first_name,
-        last_name:      user.last_name,
-        email:          user.email,
-        position:       user.position,
-        gender:         user.gender,
-        raw_answers:    answers,
+        first_name:      user.first_name,
+        last_name:       user.last_name,
+        email:           user.email,
+        position:        user.position,
+        gender:          user.gender,
+        raw_answers:     answers,
         computed_scores: scores,
-        primary_type:   primary,
-        secondary_type: secondary,
-        profile_title:  profile.title,
-        result_json:    resultPayload,
-        created_at:     new Date().toISOString(),
+        primary_type:    primary,
+        secondary_type:  secondary,
+        profile_title:   profile.title,
+        result_json:     resultPayload,
+        created_at:      new Date().toISOString(),
       });
       savedId = saved?.id || null;
     }
 
-    currentId     = savedId;
-    currentResult = resultPayload;
-
+    currentId = savedId; currentResult = resultPayload;
     document.getElementById('prog').style.width = '100%';
+
+    // Build PDF content now (while data is fresh) — element is always rendered off-screen
+    buildPDFContent(resultPayload);
+
     renderResults(resultPayload, savedId);
     show('sec-results');
 
   } catch(err) {
-    // Still render results even if DB save fails
+    // Still show results locally even if DB fails
     currentResult = resultPayload;
     document.getElementById('api-error').textContent = `⚠ Could not save to database: ${err.message}. Results shown locally.`;
     document.getElementById('api-error').classList.add('show');
     document.getElementById('prog').style.width = '100%';
+    buildPDFContent(resultPayload);
     renderResults(resultPayload, null);
     show('sec-results');
   } finally {
@@ -1145,27 +959,20 @@ async function submitAssessment() {
   }
 }
 
-/* ════════════════════════════════════════════════════════════════
-   RENDER RESULTS
-════════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   RENDER RESULTS (screen view)
+══════════════════════════════════════════════ */
 function renderResults(r, id) {
   const { scores, bands, ranked, primary_type, secondary_type, profile, action_plan, user } = r;
 
-  // Header
   document.getElementById('r-name').textContent = `${user.first_name} ${user.last_name}`;
 
-  // Share link
   const shareEl = document.getElementById('share-link');
-  if (id) {
-    shareEl.style.display = 'inline-block';
-    shareEl.dataset.url   = `${location.origin}${location.pathname}?id=${id}`;
-  } else {
-    shareEl.style.display = 'none';
-  }
+  if (id) { shareEl.style.display = 'inline-block'; shareEl.dataset.url = `${location.origin}${location.pathname}?id=${id}`; }
+  else     { shareEl.style.display = 'none'; }
 
-  // Profile badges (top 2)
-  const profRow = document.getElementById('profiles-row');
-  profRow.innerHTML = ranked.slice(0,2).map((t, idx) => {
+  // Profile badges
+  document.getElementById('profiles-row').innerHTML = ranked.slice(0,2).map((t, idx) => {
     const info = DISC_INFO[t];
     const pct  = Math.round((scores[t] / 24) * 100);
     return `
@@ -1179,20 +986,19 @@ function renderResults(r, id) {
   }).join('');
 
   // Combined card
-  const top1 = (DISC_INFO[primary_type].traits || []).filter((_,i)=>i<3);
-  const top2 = (DISC_INFO[secondary_type].traits || []).filter((_,i)=>i<3);
+  const top1 = DISC_INFO[primary_type].traits.slice(0,3);
+  const top2 = DISC_INFO[secondary_type].traits.slice(0,3);
   document.getElementById('combined-card').innerHTML = `
     <div class="combined-label">Combined Profile</div>
     <h3>${profile.title}</h3>
     <p>${profile.summary}</p>
     <div class="traits-wrap" style="margin-top:16px;">
       <div style="font-size:0.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:6px;width:100%;">Strengths</div>
-      ${top1.map(t=>`<span class="trait-tag strength">${t}</span>`).join('')}
-      ${top2.map(t=>`<span class="trait-tag strength">${t}</span>`).join('')}
+      ${[...top1,...top2].map(t=>`<span class="trait-tag strength">${t}</span>`).join('')}
     </div>`;
 
   // Scores
-  const sortedScores = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const sortedScores = Object.entries(scores).sort((a,b) => b[1]-a[1]);
   document.getElementById('scores-card').innerHTML = `
     <h3>Score Breakdown</h3>
     ${sortedScores.map(([t,v]) => {
@@ -1209,9 +1015,7 @@ function renderResults(r, id) {
             </div>
             <div class="score-nums">${pct}% &nbsp; (${v}/24)</div>
           </div>
-          <div class="bar-track">
-            <div class="bar-fill" id="bar-${t}" style="background:${info.color}"></div>
-          </div>
+          <div class="bar-track"><div class="bar-fill" id="bar-${t}" style="background:${info.color}"></div></div>
         </div>`;
     }).join('')}`;
 
@@ -1223,19 +1027,16 @@ function renderResults(r, id) {
   }, 200);
 
   // Action plan
-  if (action_plan && action_plan.length) {
-    const pos = user.position;
-    document.getElementById('action-card').innerHTML = `
-      <h3>Your Personalised Action Plan</h3>
-      <p>Tailored to your <strong>${pos}</strong> role based on your ${primary_type}-${secondary_type} profile.</p>
-      ${action_plan.map(item => `
-        <div class="plan-item">
-          <div class="plan-label">${item.label}</div>
-          <div class="plan-text">${item.text}</div>
-        </div>`).join('')}`;
-  }
+  document.getElementById('action-card').innerHTML = `
+    <h3>Your Personalised Action Plan</h3>
+    <p>Tailored to your <strong>${user.position}</strong> role based on your ${primary_type}-${secondary_type} profile.</p>
+    ${action_plan.map(item => `
+      <div class="plan-item">
+        <div class="plan-label">${item.label}</div>
+        <div class="plan-text">${item.text}</div>
+      </div>`).join('')}`;
 
-  // DISC info cards
+  // DISC info grid
   document.getElementById('disc-grid').innerHTML = sortedScores.map(([t]) => {
     const info = DISC_INFO[t];
     return `
@@ -1246,21 +1047,244 @@ function renderResults(r, id) {
         </div>
         <p>${info.desc}</p>
         <div class="traits-wrap" style="margin-top:10px;">
-          ${(info.traits||[]).map(tr=>`<span class="trait-tag" style="font-size:0.72rem;">${tr}</span>`).join('')}
+          ${info.traits.map(tr=>`<span class="trait-tag" style="font-size:0.72rem;">${tr}</span>`).join('')}
         </div>
       </div>`;
   }).join('');
 
-  // PDF button
   document.getElementById('pdf-btn').style.display = 'inline-flex';
-
-  // Prepare PDF content
-  buildPDFContent(r);
 }
 
-/* ════════════════════════════════════════════════════════════════
-   SHAREABLE LINK
-════════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   BUILD PDF CONTENT
+   ─────────────────────────────────────────────
+   Writes fully self-contained HTML into #pdf-target.
+   That element is always off-screen but RENDERED,
+   so html2canvas captures it without any blank-page issue.
+   
+   Fonts: we use web-safe fonts (Arial/Georgia) in the
+   PDF template because html2canvas cannot load Google Fonts
+   from a cross-origin CDN at capture time. This prevents
+   blank or incorrect text in the PDF.
+══════════════════════════════════════════════ */
+function buildPDFContent(r) {
+  const { scores, bands, ranked, primary_type, secondary_type, profile, action_plan, user } = r;
+  const discColors = { D:'#c0392b', I:'#d4820a', S:'#1a8c4e', C:'#1565a0' };
+  const bgGrads    = {
+    D:'linear-gradient(135deg,#9b1c1c,#c0392b)',
+    I:'linear-gradient(135deg,#92400e,#d4820a)',
+    S:'linear-gradient(135deg,#14532d,#1a8c4e)',
+    C:'linear-gradient(135deg,#1e3a5f,#1565a0)'
+  };
+
+  const sortedScores = Object.entries(scores).sort((a,b) => b[1]-a[1]);
+  const dateStr = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+
+  /*
+    ── IMPORTANT: all styles are inline ──
+    html2pdf/html2canvas does not reliably read <style> tags
+    inside the captured element. Every rule must be inline.
+  */
+  document.getElementById('pdf-target').innerHTML = `
+    <div style="
+      font-family: Arial, Helvetica, sans-serif;
+      max-width: 740px; margin: 0 auto; padding: 40px;
+      background: #fff; color: #0d0d14; font-size: 13px; line-height: 1.5;
+    ">
+
+      <!-- ── Header ── -->
+      <div style="background:#0f1f3d;border-radius:14px;padding:32px 36px;color:#fff;margin-bottom:24px;">
+        <div style="font-size:10px;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:#25b866;margin-bottom:10px;">
+          Crosstie Solutions — DISC Assessment Report
+        </div>
+        <div style="font-size:22px;font-weight:900;margin-bottom:6px;font-family:Arial,sans-serif;">
+          DISC Profile Report
+        </div>
+        <div style="font-size:16px;color:#f0b429;font-weight:700;">${user.first_name} ${user.last_name}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;">
+          ${user.position} &nbsp;|&nbsp; ${user.email} &nbsp;|&nbsp; ${dateStr}
+        </div>
+      </div>
+
+      <!-- ── Primary + Secondary Badges ── -->
+      <table style="width:100%;border-spacing:12px;border-collapse:separate;margin-bottom:20px;">
+        <tr>
+          ${ranked.slice(0,2).map((t, idx) => {
+            const info = DISC_INFO[t];
+            const pct  = Math.round((scores[t]/24)*100);
+            return `
+              <td style="
+                background:${bgGrads[t]};border-radius:14px;
+                padding:24px;color:#fff;width:50%;vertical-align:top;
+              ">
+                <div style="font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;opacity:0.75;margin-bottom:8px;">
+                  ${idx===0?'★ Primary Style':'◇ Secondary Style'}
+                </div>
+                <div style="font-size:52px;font-weight:900;line-height:1;font-family:Arial,sans-serif;">${t}</div>
+                <div style="font-size:15px;font-weight:700;margin-top:6px;">${info.name}</div>
+                <div style="font-size:11px;opacity:0.8;margin-top:4px;">${scores[t]}/24 &nbsp;•&nbsp; ${pct}% &nbsp;•&nbsp; ${bands[t]}</div>
+                <div style="font-size:11px;opacity:0.85;margin-top:10px;line-height:1.5;">${info.short}</div>
+              </td>`;
+          }).join('')}
+        </tr>
+      </table>
+
+      <!-- ── Combined Profile ── -->
+      <div style="
+        background:#f5f3ee;border-radius:12px;padding:22px 24px;
+        margin-bottom:20px;border-left:4px solid #1a8c4e;
+      ">
+        <div style="font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#1a8c4e;margin-bottom:8px;">
+          Combined Profile
+        </div>
+        <div style="font-size:18px;font-weight:900;margin-bottom:8px;font-family:Arial,sans-serif;">${profile.title}</div>
+        <div style="font-size:13px;color:#4a5568;line-height:1.7;">${profile.summary}</div>
+      </div>
+
+      <!-- ── Score Breakdown ── -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:14px;font-weight:900;margin-bottom:14px;font-family:Arial,sans-serif;">Score Breakdown</div>
+        ${sortedScores.map(([t,v]) => {
+          const pct  = Math.round((v/24)*100);
+          const info = DISC_INFO[t];
+          const band = bands[t];
+          const bandBg = band==='High'?'rgba(26,140,78,0.12)':band==='Moderate'?'rgba(212,130,10,0.12)':'rgba(74,85,104,0.1)';
+          const bandColor = band==='High'?'#1a8c4e':band==='Moderate'?'#d4820a':'#4a5568';
+          return `
+            <div style="margin-bottom:14px;">
+              <table style="width:100%;border-spacing:0;margin-bottom:6px;">
+                <tr>
+                  <td>
+                    <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${info.color};margin-right:8px;vertical-align:middle;"></span>
+                    <strong>${t} — ${info.name}</strong>
+                    <span style="
+                      display:inline-block;margin-left:8px;
+                      background:${bandBg};color:${bandColor};
+                      padding:2px 8px;border-radius:999px;
+                      font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase;
+                    ">${band}</span>
+                  </td>
+                  <td style="text-align:right;color:#8a8f9e;font-size:12px;">${pct}% &nbsp;(${v}/24)</td>
+                </tr>
+              </table>
+              <div style="background:#ede9e0;border-radius:999px;height:9px;overflow:hidden;">
+                <div style="background:${info.color};width:${pct}%;height:100%;border-radius:999px;"></div>
+              </div>
+            </div>`;
+        }).join('')}
+      </div>
+
+      <!-- ── Action Plan ── -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:14px;font-weight:900;margin-bottom:4px;font-family:Arial,sans-serif;">
+          Personalised Action Plan
+        </div>
+        <div style="font-size:11px;color:#8a8f9e;margin-bottom:14px;">
+          Tailored for <strong style="color:#0d0d14;">${user.position}</strong> based on your ${primary_type}-${secondary_type} profile
+        </div>
+        ${action_plan.map((item, idx) => {
+          const colors = ['#1a8c4e','#c0392b','#d4820a','#1565a0'];
+          return `
+            <div style="
+              border-left:3px solid ${colors[idx]||'#1a8c4e'};
+              padding:14px 16px;border-radius:0 10px 10px 0;
+              background:#f5f3ee;margin-bottom:10px;
+            ">
+              <div style="font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#8a8f9e;margin-bottom:5px;">${item.label}</div>
+              <div style="font-size:12px;color:#0d0d14;line-height:1.65;">${item.text}</div>
+            </div>`;
+        }).join('')}
+      </div>
+
+      <!-- ── DISC Definitions ── -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:14px;font-weight:900;margin-bottom:14px;font-family:Arial,sans-serif;">About the DISC Dimensions</div>
+        <table style="width:100%;border-spacing:10px;border-collapse:separate;">
+          <tr>
+            ${sortedScores.slice(0,2).map(([t]) => {
+              const info = DISC_INFO[t];
+              return `
+                <td style="background:#f5f3ee;border-radius:10px;padding:16px;vertical-align:top;width:50%;">
+                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                    <div style="
+                      width:34px;height:34px;border-radius:8px;
+                      background:${discColors[t]};color:#fff;
+                      display:flex;align-items:center;justify-content:center;
+                      font-size:1rem;font-weight:900;flex-shrink:0;
+                    ">${t}</div>
+                    <div>
+                      <div style="font-weight:900;font-size:13px;">${info.name}</div>
+                      <div style="font-size:10px;color:#8a8f9e;">${info.short}</div>
+                    </div>
+                  </div>
+                  <div style="font-size:11px;color:#4a5568;line-height:1.6;">${info.desc}</div>
+                </td>`;
+            }).join('')}
+          </tr>
+        </table>
+      </div>
+
+      <!-- ── Footer ── -->
+      <div style="border-top:1px solid #ede9e0;padding-top:14px;font-size:10px;color:#8a8f9e;text-align:center;">
+        Generated by Crosstie Solutions DISC Assessment &nbsp;|&nbsp; Strictly Confidential &nbsp;|&nbsp; ${dateStr}
+      </div>
+    </div>`;
+}
+
+/* ══════════════════════════════════════════════
+   DOWNLOAD PDF
+   ─────────────────────────────────────────────
+   #pdf-target is always rendered (just off-screen).
+   We bring it temporarily on-screen at left:0 so
+   html2canvas captures it, then push it back.
+
+   We also wait for fonts/images inside the element
+   with a brief Promise-based delay before capture.
+══════════════════════════════════════════════ */
+async function downloadPDF() {
+  if (!currentResult) return;
+
+  const btn = document.getElementById('pdf-btn');
+  const el  = document.getElementById('pdf-target');
+
+  btn.textContent = '⏳ Generating…';
+  btn.disabled    = true;
+
+  // Temporarily bring on-screen so html2canvas can render correctly
+  el.style.left    = '0';
+  el.style.zIndex  = '9999';
+
+  // Give the browser one frame to paint the newly positioned element
+  await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+  const name = `${currentResult.user.first_name}_${currentResult.user.last_name}_DISC_Report`;
+
+  try {
+    await html2pdf()
+      .set({
+        margin:      [8, 8, 8, 8],
+        filename:    `${name}.pdf`,
+        image:       { type:'jpeg', quality:0.96 },
+        html2canvas: { scale:2, useCORS:true, logging:false, backgroundColor:'#ffffff' },
+        jsPDF:       { unit:'mm', format:'a4', orientation:'portrait' }
+      })
+      .from(el)
+      .save();
+  } catch(err) {
+    console.error('PDF error:', err);
+    alert('PDF generation failed. Try printing the page (Ctrl+P → Save as PDF) instead.');
+  } finally {
+    // Push back off-screen
+    el.style.left   = '-9999px';
+    el.style.zIndex = '-1';
+    btn.textContent = '⬇ Download PDF Report';
+    btn.disabled    = false;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   SHARE LINK
+══════════════════════════════════════════════ */
 function copyShareLink() {
   const el  = document.getElementById('share-link');
   const url = el.dataset.url;
@@ -1271,23 +1295,22 @@ function copyShareLink() {
   });
 }
 
-/* ════════════════════════════════════════════════════════════════
-   LOAD SHARED RESULT (from URL ?id=...)
-════════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   LOAD SHARED RESULT (?id=...)
+══════════════════════════════════════════════ */
 async function loadSharedResult() {
   const params = new URLSearchParams(location.search);
   const id     = params.get('id');
-  if (!id) return false;
-  if (SUPABASE_URL === 'https://YOUR_PROJECT.supabase.co') return false;
+  if (!id || SUPABASE_URL === 'https://YOUR_PROJECT.supabase.co') return false;
 
   const overlay = document.getElementById('loading-overlay');
   document.getElementById('loading-msg').textContent = 'Loading results…';
   overlay.classList.add('show');
   try {
     const row = await db.select('disc_assessments', id);
-    if (row && row.result_json) {
-      currentId     = id;
-      currentResult = row.result_json;
+    if (row?.result_json) {
+      currentId = id; currentResult = row.result_json;
+      buildPDFContent(row.result_json);
       renderResults(row.result_json, id);
       show('sec-results');
       overlay.classList.remove('show');
@@ -1298,103 +1321,9 @@ async function loadSharedResult() {
   return false;
 }
 
-/* ════════════════════════════════════════════════════════════════
-   PDF GENERATION
-════════════════════════════════════════════════════════════════ */
-function buildPDFContent(r) {
-  const { scores, bands, ranked, primary_type, secondary_type, profile, action_plan, user } = r;
-  const discColors = { D:'#c0392b', I:'#d4820a', S:'#1a8c4e', C:'#1565a0' };
-
-  const sortedScores = Object.entries(scores).sort((a,b) => b[1]-a[1]);
-
-  document.getElementById('pdf-target').innerHTML = `
-    <div style="font-family:'Syne',sans-serif;max-width:700px;margin:0 auto;padding:40px;background:#fff;color:#0d0d14;">
-      <!-- Header -->
-      <div style="background:#0f1f3d;border-radius:16px;padding:36px;color:#fff;margin-bottom:28px;">
-        <div style="font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#25b866;margin-bottom:10px;">Crosstie Solutions — DISC Assessment</div>
-        <div style="font-size:24px;font-weight:700;margin-bottom:6px;">DISC Profile Report</div>
-        <div style="font-size:16px;color:#f0b429;font-weight:600;">${user.first_name} ${user.last_name}</div>
-        <div style="font-size:13px;color:rgba(255,255,255,0.6);margin-top:4px;">${user.position} &nbsp;|&nbsp; ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</div>
-      </div>
-
-      <!-- Primary/Secondary -->
-      <div style="display:flex;gap:16px;margin-bottom:24px;">
-        ${ranked.slice(0,2).map((t,idx) => {
-          const info = DISC_INFO[t];
-          const pct  = Math.round((scores[t]/24)*100);
-          return `
-            <div style="flex:1;background:${discColors[t]};border-radius:14px;padding:24px;color:#fff;">
-              <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:0.75;margin-bottom:6px;">${idx===0?'Primary Style':'Secondary Style'}</div>
-              <div style="font-size:48px;font-weight:900;line-height:1;">${t}</div>
-              <div style="font-size:15px;font-weight:700;margin-top:4px;">${info.name}</div>
-              <div style="font-size:12px;opacity:0.8;margin-top:4px;">${scores[t]}/24 &nbsp;•&nbsp; ${pct}%</div>
-            </div>`;
-        }).join('')}
-      </div>
-
-      <!-- Profile Summary -->
-      <div style="background:#f5f3ee;border-radius:14px;padding:24px;margin-bottom:24px;border-left:4px solid #1a8c4e;">
-        <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#1a8c4e;margin-bottom:8px;">Combined Profile</div>
-        <div style="font-size:18px;font-weight:700;margin-bottom:8px;">${profile.title}</div>
-        <div style="font-size:13px;color:#4a5568;line-height:1.7;">${profile.summary}</div>
-      </div>
-
-      <!-- Scores -->
-      <div style="margin-bottom:24px;">
-        <div style="font-size:14px;font-weight:700;margin-bottom:16px;">Score Breakdown</div>
-        ${sortedScores.map(([t,v]) => {
-          const pct  = Math.round((v/24)*100);
-          const info = DISC_INFO[t];
-          const band = bands[t];
-          return `
-            <div style="margin-bottom:14px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <span style="font-size:13px;font-weight:700;">${t} — ${info.name}</span>
-                <span style="font-size:12px;color:#8a8f9e;">${pct}% &nbsp; (${v}/24) &nbsp; ${band}</span>
-              </div>
-              <div style="background:#ede9e0;border-radius:999px;height:8px;overflow:hidden;">
-                <div style="background:${info.color};width:${pct}%;height:100%;border-radius:999px;"></div>
-              </div>
-            </div>`;
-        }).join('')}
-      </div>
-
-      <!-- Action Plan -->
-      ${action_plan ? `
-      <div style="margin-bottom:24px;">
-        <div style="font-size:14px;font-weight:700;margin-bottom:14px;">Personalised Action Plan — ${user.position}</div>
-        ${action_plan.map(item => `
-          <div style="border-left:3px solid #1a8c4e;padding:14px 16px;border-radius:0 10px 10px 0;background:#f5f3ee;margin-bottom:12px;">
-            <div style="font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#8a8f9e;margin-bottom:5px;">${item.label}</div>
-            <div style="font-size:13px;color:#0d0d14;line-height:1.6;">${item.text}</div>
-          </div>`).join('')}
-      </div>` : ''}
-
-      <!-- Footer -->
-      <div style="border-top:1px solid #ede9e0;padding-top:16px;font-size:11px;color:#8a8f9e;text-align:center;">
-        Generated by Crosstie Solutions DISC Assessment &nbsp;|&nbsp; ${new Date().getFullYear()}
-      </div>
-    </div>`;
-}
-
-async function downloadPDF() {
-  if (!currentResult) return;
-  const el  = document.getElementById('pdf-target');
-  el.style.display = 'block';
-  const name = `${currentResult.user.first_name}_${currentResult.user.last_name}_DISC_Report`;
-  await html2pdf().set({
-    margin:      10,
-    filename:    `${name}.pdf`,
-    image:       { type: 'jpeg', quality: 0.95 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF:       { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  }).from(el).save();
-  el.style.display = 'none';
-}
-
-/* ════════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════
    RESTART
-════════════════════════════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 function restartAssessment() {
   ['firstName','lastName','email','position'].forEach(id => {
     const el = document.getElementById(id);
@@ -1404,22 +1333,18 @@ function restartAssessment() {
   document.querySelectorAll('.err-msg').forEach(e => e.classList.remove('show'));
   currentId = null; currentResult = null; answeredCount = 0;
   document.getElementById('prog').style.width = '5%';
-  // Clear URL param
-  history.replaceState(null,'',location.pathname);
+  history.replaceState(null, '', location.pathname);
   show('sec-welcome');
 }
 
-/* ════════════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════
    INIT
-════════════════════════════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 (async function init() {
   document.getElementById('prog').style.width = '5%';
   const loaded = await loadSharedResult();
-  if (!loaded) {
-    // Hide config banner if Supabase is configured
-    if (SUPABASE_URL !== 'https://YOUR_PROJECT.supabase.co') {
-      document.getElementById('config-banner').style.display = 'none';
-    }
+  if (!loaded && SUPABASE_URL !== 'https://YOUR_PROJECT.supabase.co') {
+    document.getElementById('config-banner').style.display = 'none';
   }
 })();
 </script>
