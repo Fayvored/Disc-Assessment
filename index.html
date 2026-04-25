@@ -5,16 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Crosstie Solutions — DISC Assessment</title>
 
-<!-- ✦ FONT CHANGE: Montserrat (headers) + Open Sans (body) -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
-<!-- PDF: html2pdf (wraps html2canvas + jsPDF) -->
+<!-- html2pdf: wraps html2canvas + jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
-/* ══════════════════════════════════════════════
-   ROOT TOKENS
-══════════════════════════════════════════════ */
 :root {
   --ink:    #0d0d14;
   --paper:  #f5f3ee;
@@ -41,7 +37,6 @@
 html { scroll-behavior: smooth; }
 
 body {
-  /* ✦ Open Sans for all body text */
   font-family: 'Open Sans', sans-serif;
   background: var(--paper);
   color: var(--ink);
@@ -49,9 +44,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ══════════════════════════════════════════════
-   STICKY HEADER
-══════════════════════════════════════════════ */
+/* ── HEADER ── */
 .site-header {
   position: sticky; top: 0; z-index: 200;
   background: var(--white);
@@ -60,6 +53,14 @@ body {
   display: flex; align-items: center; gap: 14px;
   box-shadow: 0 1px 12px rgba(13,13,20,0.06);
 }
+.logo-area {
+  display: flex; align-items: center; gap: 12px;
+}
+/* If logo URL is set, this shows the image; otherwise the SVG mark */
+.logo-img {
+  height: 36px; width: auto; max-width: 160px;
+  object-fit: contain; display: none; /* shown via JS if URL set */
+}
 .logo-mark {
   width: 36px; height: 36px;
   background: var(--green); border-radius: 8px;
@@ -67,7 +68,6 @@ body {
 }
 .logo-mark svg { width: 20px; height: 20px; fill: #fff; }
 .logo-name {
-  /* ✦ Montserrat for logo */
   font-family: 'Montserrat', sans-serif;
   font-size: 1.2rem; font-weight: 800; letter-spacing: -0.3px; color: var(--ink);
 }
@@ -78,16 +78,13 @@ body {
   background: var(--cream); padding: 5px 12px; border-radius: 999px;
 }
 
-/* PROGRESS */
 .progress-track { height: 3px; background: var(--cream); }
 .progress-fill {
   height: 3px; background: linear-gradient(90deg, var(--green), var(--amber));
   width: 0%; transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 
-/* ══════════════════════════════════════════════
-   LAYOUT
-══════════════════════════════════════════════ */
+/* ── LAYOUT ── */
 main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 .section { display: none; }
 .section.active { display: block; animation: rise 0.45s cubic-bezier(0.4,0,0.2,1); }
@@ -96,9 +93,7 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ══════════════════════════════════════════════
-   WELCOME HERO
-══════════════════════════════════════════════ */
+/* ── HERO ── */
 .hero {
   background: var(--navy); border-radius: 24px;
   padding: 60px 52px 52px; color: #fff; margin-bottom: 36px;
@@ -130,7 +125,6 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 }
 .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 2px; background: var(--green2); }
 .hero h1 {
-  /* ✦ Montserrat for all headings */
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 900;
   line-height: 1.1; margin-bottom: 20px; position: relative; z-index: 1;
@@ -151,7 +145,6 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 .tag-S { background: rgba(26,140,78,0.18);  color: #6beba0; border: 1px solid rgba(26,140,78,0.35); }
 .tag-C { background: rgba(21,101,160,0.18); color: #7ec8f0; border: 1px solid rgba(21,101,160,0.35); }
 
-/* NOTICE CARDS */
 .notice-row {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr));
   gap: 14px; margin-bottom: 36px;
@@ -167,9 +160,7 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 }
 .notice-card p { font-size: 0.82rem; color: var(--slate); line-height: 1.65; }
 
-/* ══════════════════════════════════════════════
-   FORM
-══════════════════════════════════════════════ */
+/* ── FORM ── */
 .form-card {
   background: var(--white); border-radius: 20px;
   padding: 40px; box-shadow: var(--sh2); margin-bottom: 28px; border: 1px solid var(--border);
@@ -217,9 +208,7 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 .gender-opt input:checked + label { border-color: var(--green); background: rgba(26,140,78,0.07); color: var(--green); }
 .gender-opt label:hover { border-color: var(--green); background: rgba(26,140,78,0.04); }
 
-/* ══════════════════════════════════════════════
-   QUESTIONS
-══════════════════════════════════════════════ */
+/* ── QUESTIONS ── */
 .q-header { text-align: center; margin-bottom: 36px; }
 .q-header-eyebrow {
   font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
@@ -271,9 +260,7 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 .opt input:checked + .opt-body::before { background: var(--green); border-color: var(--green); box-shadow: inset 0 0 0 3px #fff; }
 .opt:hover .opt-body { border-color: var(--green); background: rgba(26,140,78,0.04); }
 
-/* ══════════════════════════════════════════════
-   BUTTONS
-══════════════════════════════════════════════ */
+/* ── BUTTONS ── */
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 14px 30px; border-radius: 12px;
@@ -288,13 +275,9 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 .btn-ghost:hover  { background: var(--border); }
 .btn-dark   { background: var(--navy); color: #fff; box-shadow: 0 4px 16px rgba(15,31,61,0.25); }
 .btn-dark:hover   { background: #1a3263; transform: translateY(-1px); }
-.btn-amber  { background: var(--amber); color: var(--ink); box-shadow: 0 4px 16px rgba(201,150,15,0.28); }
-.btn-amber:hover  { background: #d4a012; transform: translateY(-1px); }
 .btn-row { display: flex; gap: 12px; justify-content: flex-end; margin-top: 28px; flex-wrap: wrap; }
 
-/* ══════════════════════════════════════════════
-   ALERTS
-══════════════════════════════════════════════ */
+/* ── ALERTS ── */
 .val-alert, .api-error {
   background: #fff4f4; border: 1px solid #f5a5a5; border-radius: 10px;
   padding: 13px 18px; color: #b91c1c; font-size: 0.87rem; font-weight: 600;
@@ -302,9 +285,7 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 }
 .val-alert.show, .api-error.show { display: block; }
 
-/* ══════════════════════════════════════════════
-   LOADING OVERLAY
-══════════════════════════════════════════════ */
+/* ── LOADING ── */
 #loading-overlay {
   display: none; position: fixed; inset: 0;
   background: rgba(13,13,20,0.88); z-index: 9999;
@@ -320,9 +301,7 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 @keyframes spin { to { transform: rotate(360deg); } }
 #loading-overlay p { color: #fff; font-size: 0.95rem; font-weight: 600; }
 
-/* ══════════════════════════════════════════════
-   RESULTS — HERO
-══════════════════════════════════════════════ */
+/* ── RESULTS ── */
 .results-hero {
   background: var(--navy); border-radius: 24px;
   padding: 52px 48px 44px; color: #fff; text-align: center;
@@ -359,7 +338,6 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 }
 .result-share-link:hover { background: rgba(255,255,255,0.14); color: #fff; }
 
-/* PROFILE BADGES */
 .profiles-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
 @media(max-width: 520px) { .profiles-row { grid-template-columns: 1fr; } }
 .profile-badge {
@@ -380,7 +358,6 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 .badge-S { background: linear-gradient(135deg, #14532d, #1a8c4e); }
 .badge-C { background: linear-gradient(135deg, #1e3a5f, #1565a0); }
 
-/* COMBINED CARD */
 .combined-card {
   background: var(--white); border-radius: 20px;
   padding: 36px; margin-bottom: 24px; border: 1px solid var(--border); box-shadow: var(--sh);
@@ -400,9 +377,7 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
   font-size: 0.75rem; font-weight: 700; background: var(--cream); color: var(--slate);
 }
 .trait-tag.strength { background: rgba(26,140,78,0.1); color: var(--green); }
-.trait-tag.risk     { background: rgba(192,57,43,0.09); color: var(--D); }
 
-/* SCORES CARD */
 .scores-card {
   background: var(--white); border-radius: 20px;
   padding: 36px; margin-bottom: 24px; border: 1px solid var(--border); box-shadow: var(--sh);
@@ -426,7 +401,6 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 .bar-track     { background: var(--cream); border-radius: 999px; height: 10px; overflow: hidden; }
 .bar-fill      { height: 100%; border-radius: 999px; width: 0%; transition: width 0.8s cubic-bezier(0.4,0,0.2,1); }
 
-/* ACTION PLAN */
 .action-card {
   background: var(--white); border-radius: 20px;
   padding: 36px; margin-bottom: 24px; border: 1px solid var(--border); box-shadow: var(--sh);
@@ -436,8 +410,6 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
   font-size: 1.35rem; font-weight: 800; margin-bottom: 6px;
 }
 .action-card > p { color: var(--dim); font-size: 0.88rem; margin-bottom: 24px; }
-
-/* Action plan items — alternating left-border colours */
 .plan-item {
   border-left: 3px solid var(--green);
   padding: 18px 20px; border-radius: 0 12px 12px 0;
@@ -452,7 +424,6 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 }
 .plan-text { font-size: 0.9rem; color: var(--ink); line-height: 1.65; font-weight: 500; }
 
-/* DISC INFO GRID */
 .disc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
 @media(max-width: 520px) { .disc-grid { grid-template-columns: 1fr; } }
 .disc-info-card {
@@ -471,26 +442,6 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 .di-top p  { font-size: 0.78rem; color: var(--dim); }
 .disc-info-card > p { font-size: 0.83rem; color: var(--slate); line-height: 1.65; }
 
-/* ══════════════════════════════════════════════
-   PDF TARGET
-   ─────────────────────────────────────────────
-   KEY FIX: position off-screen (not display:none).
-   html2canvas can only render VISIBLE elements —
-   display:none elements produce blank output.
-   Absolute + left:-9999px keeps it painted but
-   invisible to the user.
-══════════════════════════════════════════════ */
-#pdf-target {
-  position: fixed;
-  left: -9999px;
-  top: 0;
-  width: 780px;      /* A4-ish at 96 dpi */
-  background: #fff;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* CONFIG BANNER */
 .config-banner {
   background: var(--cream); border: 1px dashed var(--gold);
   border-radius: 12px; padding: 16px 20px; margin-bottom: 24px;
@@ -500,6 +451,23 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 .config-banner code {
   background: rgba(201,150,15,0.12); color: var(--gold);
   padding: 1px 6px; border-radius: 5px; font-size: 0.78rem;
+}
+
+/* ── PDF CAPTURE WRAPPER ──────────────────────────────────
+   CRITICAL: Must be position:absolute (NOT fixed) so
+   html2canvas treats it as normal document flow.
+   We park it at left:-9999px so it's painted but not visible.
+   We never need to move it — html2canvas can capture
+   absolute-positioned elements even when off-screen left.
+   The width is set explicitly so layout is predictable.
+──────────────────────────────────────────────────────── */
+#pdf-capture-zone {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  width: 780px;
+  background: #fff;
+  pointer-events: none;
 }
 
 @media(max-width: 600px) {
@@ -515,10 +483,14 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 
 <!-- HEADER -->
 <header class="site-header">
-  <div class="logo-mark">
-    <svg viewBox="0 0 20 20"><path d="M10 2L3 7v11h14V7L10 2zm0 2.5l6 4V16H4V8.5l6-4z"/></svg>
+  <div class="logo-area">
+    <!-- If LOGO_URL is set, this image shows instead of the SVG mark -->
+    <img id="header-logo-img" class="logo-img" src="" alt="Crosstie Solutions Logo"/>
+    <div class="logo-mark" id="header-logo-mark">
+      <svg viewBox="0 0 20 20"><path d="M10 2L3 7v11h14V7L10 2zm0 2.5l6 4V16H4V8.5l6-4z"/></svg>
+    </div>
+    <div class="logo-name" id="header-logo-name">Crosstie <span>Solutions</span></div>
   </div>
-  <div class="logo-name">Crosstie <span>Solutions</span></div>
   <div class="header-badge">DISC Assessment</div>
 </header>
 <div class="progress-track"><div class="progress-fill" id="prog"></div></div>
@@ -530,15 +502,18 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 </div>
 
 <!--
-  ══ PDF TARGET ══
-  Always in DOM and "rendered" by the browser (just off-screen).
-  html2canvas can capture it correctly at any time.
+  PDF CAPTURE ZONE
+  ─────────────────────────────────────────────────────────
+  position: absolute; left: -9999px  → always rendered by
+  the browser, just off-screen. html2canvas can capture
+  absolute elements regardless of left position.
+  This is the key fix for the blank-PDF bug.
 -->
-<div id="pdf-target"></div>
+<div id="pdf-capture-zone"></div>
 
 <main>
 
-<!-- ══ SECTION 1: WELCOME ══ -->
+<!-- SECTION 1: WELCOME -->
 <div id="sec-welcome" class="section active">
   <div class="hero">
     <div class="hero-grid-bg"></div>
@@ -563,7 +538,7 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
   </div>
 
   <div class="config-banner" id="config-banner">
-    <strong>⚙ Setup Required:</strong> Replace <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> at the top of the &lt;script&gt; with your Supabase credentials.
+    <strong>⚙ Setup Required:</strong> Replace <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> at the top of the &lt;script&gt; with your Supabase credentials. To add your logo, set <code>LOGO_URL</code>.
   </div>
 
   <div class="form-card">
@@ -605,7 +580,7 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
   </div>
 </div>
 
-<!-- ══ SECTION 2: QUESTIONS ══ -->
+<!-- SECTION 2: QUESTIONS -->
 <div id="sec-questions" class="section">
   <div class="q-header">
     <div class="q-header-eyebrow">Step 2 of 3 — Assessment</div>
@@ -624,7 +599,7 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
   </div>
 </div>
 
-<!-- ══ SECTION 3: RESULTS ══ -->
+<!-- SECTION 3: RESULTS -->
 <div id="sec-results" class="section">
   <div class="results-hero">
     <div class="results-hero-bg"></div>
@@ -651,13 +626,36 @@ main { max-width: 800px; margin: 0 auto; padding: 48px 24px 100px; }
 
 <script>
 /* ══════════════════════════════════════════════
-   ⚙ CONFIGURATION
+   ⚙ CONFIGURATION — edit these three lines only
 ══════════════════════════════════════════════ */
 const SUPABASE_URL      = 'https://pungbkhzytoqdiycmjnq.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB1bmdia2h6eXRvcWRpeWNtam5xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNTc0MzQsImV4cCI6MjA5MjYzMzQzNH0.ofTuKhS5cWOnQJqc9MytgkvvWmjrJH8yo8QoCsqAvaA';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// LOGO: paste the full URL of your logo image here.
+// Accepted formats: PNG, JPG, SVG, WebP.
+// Leave as empty string '' to use the default text/icon logo.
+// Example: 'https://yourdomain.com/assets/logo.png'
+//          'https://i.imgur.com/abc123.png'
+// ─────────────────────────────────────────────────────────────────────────────
+const LOGO_URL = 'https://share.google/jauBzd1BLgFgv7tuM';   // ← paste your logo URL here
+
 /* ══════════════════════════════════════════════
-   SUPABASE CLIENT (no SDK — raw fetch)
+   APPLY LOGO ON LOAD
+══════════════════════════════════════════════ */
+(function applyLogo() {
+  if (!LOGO_URL) return;
+  const img   = document.getElementById('header-logo-img');
+  const mark  = document.getElementById('header-logo-mark');
+  const name  = document.getElementById('header-logo-name');
+  img.src = LOGO_URL;
+  img.style.display = 'block';
+  mark.style.display = 'none';
+  name.style.display = 'none';
+})();
+
+/* ══════════════════════════════════════════════
+   SUPABASE CLIENT (raw fetch, no SDK)
 ══════════════════════════════════════════════ */
 const db = {
   async insert(table, data) {
@@ -686,7 +684,7 @@ const db = {
 };
 
 /* ══════════════════════════════════════════════
-   QUESTION DATA — options + per-position DISC map
+   QUESTION DATA
 ══════════════════════════════════════════════ */
 const questions = [
   { opts: ["Restrained","Forceful","Careful","Expressive"],           map: ["S","D","C","I"] },
@@ -937,15 +935,11 @@ async function submitAssessment() {
 
     currentId = savedId; currentResult = resultPayload;
     document.getElementById('prog').style.width = '100%';
-
-    // Build PDF content now (while data is fresh) — element is always rendered off-screen
     buildPDFContent(resultPayload);
-
     renderResults(resultPayload, savedId);
     show('sec-results');
 
   } catch(err) {
-    // Still show results locally even if DB fails
     currentResult = resultPayload;
     document.getElementById('api-error').textContent = `⚠ Could not save to database: ${err.message}. Results shown locally.`;
     document.getElementById('api-error').classList.add('show');
@@ -960,7 +954,7 @@ async function submitAssessment() {
 }
 
 /* ══════════════════════════════════════════════
-   RENDER RESULTS (screen view)
+   RENDER RESULTS (screen)
 ══════════════════════════════════════════════ */
 function renderResults(r, id) {
   const { scores, bands, ranked, primary_type, secondary_type, profile, action_plan, user } = r;
@@ -971,7 +965,6 @@ function renderResults(r, id) {
   if (id) { shareEl.style.display = 'inline-block'; shareEl.dataset.url = `${location.origin}${location.pathname}?id=${id}`; }
   else     { shareEl.style.display = 'none'; }
 
-  // Profile badges
   document.getElementById('profiles-row').innerHTML = ranked.slice(0,2).map((t, idx) => {
     const info = DISC_INFO[t];
     const pct  = Math.round((scores[t] / 24) * 100);
@@ -985,19 +978,17 @@ function renderResults(r, id) {
       </div>`;
   }).join('');
 
-  // Combined card
   const top1 = DISC_INFO[primary_type].traits.slice(0,3);
   const top2 = DISC_INFO[secondary_type].traits.slice(0,3);
   document.getElementById('combined-card').innerHTML = `
     <div class="combined-label">Combined Profile</div>
     <h3>${profile.title}</h3>
     <p>${profile.summary}</p>
-    <div class="traits-wrap" style="margin-top:16px;">
+    <div class="traits-wrap">
       <div style="font-size:0.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:6px;width:100%;">Strengths</div>
       ${[...top1,...top2].map(t=>`<span class="trait-tag strength">${t}</span>`).join('')}
     </div>`;
 
-  // Scores
   const sortedScores = Object.entries(scores).sort((a,b) => b[1]-a[1]);
   document.getElementById('scores-card').innerHTML = `
     <h3>Score Breakdown</h3>
@@ -1026,7 +1017,6 @@ function renderResults(r, id) {
     });
   }, 200);
 
-  // Action plan
   document.getElementById('action-card').innerHTML = `
     <h3>Your Personalised Action Plan</h3>
     <p>Tailored to your <strong>${user.position}</strong> role based on your ${primary_type}-${secondary_type} profile.</p>
@@ -1036,7 +1026,6 @@ function renderResults(r, id) {
         <div class="plan-text">${item.text}</div>
       </div>`).join('')}`;
 
-  // DISC info grid
   document.getElementById('disc-grid').innerHTML = sortedScores.map(([t]) => {
     const info = DISC_INFO[t];
     return `
@@ -1058,19 +1047,26 @@ function renderResults(r, id) {
 /* ══════════════════════════════════════════════
    BUILD PDF CONTENT
    ─────────────────────────────────────────────
-   Writes fully self-contained HTML into #pdf-target.
-   That element is always off-screen but RENDERED,
-   so html2canvas captures it without any blank-page issue.
-   
-   Fonts: we use web-safe fonts (Arial/Georgia) in the
-   PDF template because html2canvas cannot load Google Fonts
-   from a cross-origin CDN at capture time. This prevents
-   blank or incorrect text in the PDF.
+   Writes self-contained HTML into #pdf-capture-zone.
+   That element is position:absolute left:-9999px so it
+   is always rendered by the browser. html2canvas can
+   capture absolute elements without any visibility tricks.
+
+   All styles are inline — html2canvas does not reliably
+   inherit external stylesheets applied to off-screen nodes.
+
+   Fonts are web-safe (Arial/Georgia) because html2canvas
+   cannot load cross-origin Google Fonts at capture time.
+
+   Logo: if LOGO_URL is set we embed an <img> tag with
+   crossorigin="anonymous" so html2canvas can draw it.
+   The server hosting your logo must allow CORS (most CDNs
+   and cloud storage services do).
 ══════════════════════════════════════════════ */
 function buildPDFContent(r) {
   const { scores, bands, ranked, primary_type, secondary_type, profile, action_plan, user } = r;
-  const discColors = { D:'#c0392b', I:'#d4820a', S:'#1a8c4e', C:'#1565a0' };
-  const bgGrads    = {
+
+  const bgGrads = {
     D:'linear-gradient(135deg,#9b1c1c,#c0392b)',
     I:'linear-gradient(135deg,#92400e,#d4820a)',
     S:'linear-gradient(135deg,#14532d,#1a8c4e)',
@@ -1080,125 +1076,116 @@ function buildPDFContent(r) {
   const sortedScores = Object.entries(scores).sort((a,b) => b[1]-a[1]);
   const dateStr = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
 
-  /*
-    ── IMPORTANT: all styles are inline ──
-    html2pdf/html2canvas does not reliably read <style> tags
-    inside the captured element. Every rule must be inline.
-  */
-  document.getElementById('pdf-target').innerHTML = `
+  // Logo HTML for the PDF header
+  const logoHTML = LOGO_URL
+    ? `<img src="${LOGO_URL}" crossorigin="anonymous"
+         style="height:40px;width:auto;max-width:180px;object-fit:contain;display:block;margin-bottom:12px;"
+         alt="Logo"/>`
+    : `<div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:12px;">
+         <div style="width:32px;height:32px;background:#1a8c4e;border-radius:7px;display:flex;align-items:center;justify-content:center;">
+           <svg viewBox="0 0 20 20" style="width:18px;height:18px;fill:#fff;"><path d="M10 2L3 7v11h14V7L10 2zm0 2.5l6 4V16H4V8.5l6-4z"/></svg>
+         </div>
+         <span style="font-size:16px;font-weight:900;color:#fff;font-family:Arial,sans-serif;">
+           Crosstie <span style="color:#25b866;">Solutions</span>
+         </span>
+       </div>`;
+
+  document.getElementById('pdf-capture-zone').innerHTML = `
     <div style="
       font-family: Arial, Helvetica, sans-serif;
-      max-width: 740px; margin: 0 auto; padding: 40px;
-      background: #fff; color: #0d0d14; font-size: 13px; line-height: 1.5;
+      width: 740px;
+      padding: 40px;
+      background: #fff;
+      color: #0d0d14;
+      font-size: 13px;
+      line-height: 1.5;
     ">
 
-      <!-- ── Header ── -->
+      <!-- Header -->
       <div style="background:#0f1f3d;border-radius:14px;padding:32px 36px;color:#fff;margin-bottom:24px;">
+        ${logoHTML}
         <div style="font-size:10px;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:#25b866;margin-bottom:10px;">
-          Crosstie Solutions — DISC Assessment Report
+          DISC Assessment Report
         </div>
-        <div style="font-size:22px;font-weight:900;margin-bottom:6px;font-family:Arial,sans-serif;">
-          DISC Profile Report
-        </div>
+        <div style="font-size:22px;font-weight:900;margin-bottom:6px;">DISC Profile Report</div>
         <div style="font-size:16px;color:#f0b429;font-weight:700;">${user.first_name} ${user.last_name}</div>
         <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;">
           ${user.position} &nbsp;|&nbsp; ${user.email} &nbsp;|&nbsp; ${dateStr}
         </div>
       </div>
 
-      <!-- ── Primary + Secondary Badges ── -->
+      <!-- Primary + Secondary Badges -->
       <table style="width:100%;border-spacing:12px;border-collapse:separate;margin-bottom:20px;">
         <tr>
           ${ranked.slice(0,2).map((t, idx) => {
             const info = DISC_INFO[t];
             const pct  = Math.round((scores[t]/24)*100);
             return `
-              <td style="
-                background:${bgGrads[t]};border-radius:14px;
-                padding:24px;color:#fff;width:50%;vertical-align:top;
-              ">
+              <td style="background:${bgGrads[t]};border-radius:14px;padding:24px;color:#fff;width:50%;vertical-align:top;">
                 <div style="font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;opacity:0.75;margin-bottom:8px;">
                   ${idx===0?'★ Primary Style':'◇ Secondary Style'}
                 </div>
-                <div style="font-size:52px;font-weight:900;line-height:1;font-family:Arial,sans-serif;">${t}</div>
+                <div style="font-size:52px;font-weight:900;line-height:1;">${t}</div>
                 <div style="font-size:15px;font-weight:700;margin-top:6px;">${info.name}</div>
-                <div style="font-size:11px;opacity:0.8;margin-top:4px;">${scores[t]}/24 &nbsp;•&nbsp; ${pct}% &nbsp;•&nbsp; ${bands[t]}</div>
+                <div style="font-size:11px;opacity:0.8;margin-top:4px;">${scores[t]}/24 • ${pct}% • ${bands[t]}</div>
                 <div style="font-size:11px;opacity:0.85;margin-top:10px;line-height:1.5;">${info.short}</div>
               </td>`;
           }).join('')}
         </tr>
       </table>
 
-      <!-- ── Combined Profile ── -->
-      <div style="
-        background:#f5f3ee;border-radius:12px;padding:22px 24px;
-        margin-bottom:20px;border-left:4px solid #1a8c4e;
-      ">
-        <div style="font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#1a8c4e;margin-bottom:8px;">
-          Combined Profile
-        </div>
-        <div style="font-size:18px;font-weight:900;margin-bottom:8px;font-family:Arial,sans-serif;">${profile.title}</div>
+      <!-- Combined Profile -->
+      <div style="background:#f5f3ee;border-radius:12px;padding:22px 24px;margin-bottom:20px;border-left:4px solid #1a8c4e;">
+        <div style="font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#1a8c4e;margin-bottom:8px;">Combined Profile</div>
+        <div style="font-size:18px;font-weight:900;margin-bottom:8px;">${profile.title}</div>
         <div style="font-size:13px;color:#4a5568;line-height:1.7;">${profile.summary}</div>
       </div>
 
-      <!-- ── Score Breakdown ── -->
+      <!-- Score Breakdown -->
       <div style="margin-bottom:20px;">
-        <div style="font-size:14px;font-weight:900;margin-bottom:14px;font-family:Arial,sans-serif;">Score Breakdown</div>
+        <div style="font-size:14px;font-weight:900;margin-bottom:14px;">Score Breakdown</div>
         ${sortedScores.map(([t,v]) => {
-          const pct  = Math.round((v/24)*100);
-          const info = DISC_INFO[t];
-          const band = bands[t];
-          const bandBg = band==='High'?'rgba(26,140,78,0.12)':band==='Moderate'?'rgba(212,130,10,0.12)':'rgba(74,85,104,0.1)';
+          const pct   = Math.round((v/24)*100);
+          const info  = DISC_INFO[t];
+          const band  = bands[t];
+          const bandBg    = band==='High'?'rgba(26,140,78,0.15)':band==='Moderate'?'rgba(212,130,10,0.15)':'rgba(74,85,104,0.12)';
           const bandColor = band==='High'?'#1a8c4e':band==='Moderate'?'#d4820a':'#4a5568';
           return `
             <div style="margin-bottom:14px;">
-              <table style="width:100%;border-spacing:0;margin-bottom:6px;">
-                <tr>
-                  <td>
-                    <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${info.color};margin-right:8px;vertical-align:middle;"></span>
-                    <strong>${t} — ${info.name}</strong>
-                    <span style="
-                      display:inline-block;margin-left:8px;
-                      background:${bandBg};color:${bandColor};
-                      padding:2px 8px;border-radius:999px;
-                      font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase;
-                    ">${band}</span>
-                  </td>
-                  <td style="text-align:right;color:#8a8f9e;font-size:12px;">${pct}% &nbsp;(${v}/24)</td>
-                </tr>
-              </table>
-              <div style="background:#ede9e0;border-radius:999px;height:9px;overflow:hidden;">
+              <table style="width:100%;border-spacing:0;margin-bottom:6px;"><tr>
+                <td>
+                  <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${info.color};margin-right:8px;vertical-align:middle;"></span>
+                  <strong>${t} — ${info.name}</strong>
+                  <span style="display:inline-block;margin-left:8px;background:${bandBg};color:${bandColor};padding:2px 8px;border-radius:999px;font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase;">${band}</span>
+                </td>
+                <td style="text-align:right;color:#8a8f9e;font-size:12px;">${pct}% (${v}/24)</td>
+              </tr></table>
+              <div style="background:#ede9e0;border-radius:999px;height:10px;overflow:hidden;">
                 <div style="background:${info.color};width:${pct}%;height:100%;border-radius:999px;"></div>
               </div>
             </div>`;
         }).join('')}
       </div>
 
-      <!-- ── Action Plan ── -->
+      <!-- Action Plan -->
       <div style="margin-bottom:20px;">
-        <div style="font-size:14px;font-weight:900;margin-bottom:4px;font-family:Arial,sans-serif;">
-          Personalised Action Plan
-        </div>
+        <div style="font-size:14px;font-weight:900;margin-bottom:4px;">Personalised Action Plan</div>
         <div style="font-size:11px;color:#8a8f9e;margin-bottom:14px;">
-          Tailored for <strong style="color:#0d0d14;">${user.position}</strong> based on your ${primary_type}-${secondary_type} profile
+          Tailored for <strong style="color:#0d0d14;">${user.position}</strong> — ${primary_type}-${secondary_type} profile
         </div>
         ${action_plan.map((item, idx) => {
           const colors = ['#1a8c4e','#c0392b','#d4820a','#1565a0'];
           return `
-            <div style="
-              border-left:3px solid ${colors[idx]||'#1a8c4e'};
-              padding:14px 16px;border-radius:0 10px 10px 0;
-              background:#f5f3ee;margin-bottom:10px;
-            ">
+            <div style="border-left:3px solid ${colors[idx]||'#1a8c4e'};padding:14px 16px;border-radius:0 10px 10px 0;background:#f5f3ee;margin-bottom:10px;">
               <div style="font-size:9px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:#8a8f9e;margin-bottom:5px;">${item.label}</div>
               <div style="font-size:12px;color:#0d0d14;line-height:1.65;">${item.text}</div>
             </div>`;
         }).join('')}
       </div>
 
-      <!-- ── DISC Definitions ── -->
-      <div style="margin-bottom:20px;">
-        <div style="font-size:14px;font-weight:900;margin-bottom:14px;font-family:Arial,sans-serif;">About the DISC Dimensions</div>
+      <!-- DISC Definitions -->
+      <div style="margin-bottom:24px;">
+        <div style="font-size:14px;font-weight:900;margin-bottom:14px;">About the DISC Dimensions</div>
         <table style="width:100%;border-spacing:10px;border-collapse:separate;">
           <tr>
             ${sortedScores.slice(0,2).map(([t]) => {
@@ -1206,12 +1193,7 @@ function buildPDFContent(r) {
               return `
                 <td style="background:#f5f3ee;border-radius:10px;padding:16px;vertical-align:top;width:50%;">
                   <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-                    <div style="
-                      width:34px;height:34px;border-radius:8px;
-                      background:${discColors[t]};color:#fff;
-                      display:flex;align-items:center;justify-content:center;
-                      font-size:1rem;font-weight:900;flex-shrink:0;
-                    ">${t}</div>
+                    <div style="width:34px;height:34px;border-radius:8px;background:${info.color};color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0;">${t}</div>
                     <div>
                       <div style="font-weight:900;font-size:13px;">${info.name}</div>
                       <div style="font-size:10px;color:#8a8f9e;">${info.short}</div>
@@ -1224,7 +1206,7 @@ function buildPDFContent(r) {
         </table>
       </div>
 
-      <!-- ── Footer ── -->
+      <!-- Footer -->
       <div style="border-top:1px solid #ede9e0;padding-top:14px;font-size:10px;color:#8a8f9e;text-align:center;">
         Generated by Crosstie Solutions DISC Assessment &nbsp;|&nbsp; Strictly Confidential &nbsp;|&nbsp; ${dateStr}
       </div>
@@ -1234,27 +1216,26 @@ function buildPDFContent(r) {
 /* ══════════════════════════════════════════════
    DOWNLOAD PDF
    ─────────────────────────────────────────────
-   #pdf-target is always rendered (just off-screen).
-   We bring it temporarily on-screen at left:0 so
-   html2canvas captures it, then push it back.
+   #pdf-capture-zone is position:absolute left:-9999px.
+   html2canvas CAN capture absolutely-positioned elements
+   even when they are far off-screen — no need to move
+   them. We pass the element directly to html2pdf.
 
-   We also wait for fonts/images inside the element
-   with a brief Promise-based delay before capture.
+   windowWidth override tells html2canvas the logical
+   viewport to use when rendering the element, preventing
+   it from using the actual browser window width and
+   potentially reflowing the fixed-width PDF layout.
 ══════════════════════════════════════════════ */
 async function downloadPDF() {
   if (!currentResult) return;
 
   const btn = document.getElementById('pdf-btn');
-  const el  = document.getElementById('pdf-target');
+  const el  = document.getElementById('pdf-capture-zone');
 
-  btn.textContent = '⏳ Generating…';
+  btn.textContent = '⏳ Generating PDF…';
   btn.disabled    = true;
 
-  // Temporarily bring on-screen so html2canvas can render correctly
-  el.style.left    = '0';
-  el.style.zIndex  = '9999';
-
-  // Give the browser one frame to paint the newly positioned element
+  // Give the browser a frame to repaint in case content changed
   await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 
   const name = `${currentResult.user.first_name}_${currentResult.user.last_name}_DISC_Report`;
@@ -1264,19 +1245,22 @@ async function downloadPDF() {
       .set({
         margin:      [8, 8, 8, 8],
         filename:    `${name}.pdf`,
-        image:       { type:'jpeg', quality:0.96 },
-        html2canvas: { scale:2, useCORS:true, logging:false, backgroundColor:'#ffffff' },
-        jsPDF:       { unit:'mm', format:'a4', orientation:'portrait' }
+        image:       { type: 'jpeg', quality: 0.96 },
+        html2canvas: {
+          scale:       2,
+          useCORS:     true,     // required for cross-origin logo images
+          logging:     false,
+          backgroundColor: '#ffffff',
+          windowWidth: 820,      // match the PDF zone width + padding
+        },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       })
       .from(el)
       .save();
-  } catch(err) {
+  } catch (err) {
     console.error('PDF error:', err);
-    alert('PDF generation failed. Try printing the page (Ctrl+P → Save as PDF) instead.');
+    alert('PDF generation failed.\n\nAlternative: use File → Print → "Save as PDF" in your browser.');
   } finally {
-    // Push back off-screen
-    el.style.left   = '-9999px';
-    el.style.zIndex = '-1';
     btn.textContent = '⬇ Download PDF Report';
     btn.disabled    = false;
   }
